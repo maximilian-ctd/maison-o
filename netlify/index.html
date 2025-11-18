@@ -63,6 +63,9 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
+      display: block;
+      visibility: visible;
+      opacity: 1;
     }
 
     /* Video Overlay - Sehr dunkel für atmosphärischen Effekt */
@@ -871,6 +874,7 @@
           loop 
           playsinline
           id="heroVideo"
+          style="display: block !important; visibility: visible !important; opacity: 1 !important;"
         >
           <!-- Video: videoplayback.mp4 -->
           <source src="videoplayback.mp4" type="video/mp4">
@@ -980,26 +984,36 @@
     // Zeige Video standardmäßig
     if (video) {
       video.style.display = 'block';
+      video.style.visibility = 'visible';
+      video.style.opacity = '1';
       
       // Verstecke Placeholder wenn Video geladen wird
       video.addEventListener('loadeddata', function() {
+        console.log('Video geladen');
         if (placeholder) {
           placeholder.style.display = 'none';
         }
         video.style.display = 'block';
+        video.style.visibility = 'visible';
+        video.style.opacity = '1';
       });
       
       // Video Error Handling
-      video.addEventListener('error', function() {
-        console.log('Video konnte nicht geladen werden');
+      video.addEventListener('error', function(e) {
+        console.error('Video konnte nicht geladen werden:', e);
         if (placeholder) {
           placeholder.style.display = 'flex';
         }
-        video.style.display = 'none';
+        // Video nicht verstecken, sondern nur Placeholder zeigen
       });
       
       // Versuche Video zu laden
       video.load();
+      
+      // Zusätzlich: Versuche Video zu spielen (für Autoplay)
+      video.play().catch(function(error) {
+        console.log('Autoplay wurde verhindert:', error);
+      });
     }
 
     // Overlay Opacity Slider (für Testing)
