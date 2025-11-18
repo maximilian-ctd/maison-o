@@ -315,25 +315,26 @@
 
     .footer__inner {
       display: flex;
-      justify-content: flex-start;
-      align-items: flex-start;
+      justify-content: center;
+      align-items: center;
       flex-wrap: nowrap;
       gap: 30px;
-      padding-left: 54px;
+      padding-left: 0;
       padding-right: 0;
       padding-top: 20px;
       width: 100%;
       max-width: none;
       margin: 0;
       box-sizing: border-box;
+      position: relative;
     }
 
     .footer__nav {
-      flex: 0 0 auto;
+      flex: 1 1 auto;
       min-width: 0;
       display: flex;
-      justify-content: flex-start;
-      align-items: flex-start;
+      justify-content: center;
+      align-items: center;
       position: relative;
     }
 
@@ -342,8 +343,8 @@
       margin: 0;
       padding: 0;
       display: flex;
-      justify-content: flex-start;
-      align-items: flex-start;
+      justify-content: center;
+      align-items: center;
       flex-wrap: wrap;
       gap: 30px;
     }
@@ -352,20 +353,24 @@
       margin: 0;
     }
 
-    .footer__menu-link {
-      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    .footer__menu-link,
+    .footer__menu-link:link,
+    .footer__menu-link:visited,
+    .footer__menu-link:active,
+    .footer__menu-link:hover,
+    .footer__menu-link:focus {
+      font-family: 'Montserrat', sans-serif !important;
       font-size: 0.75rem;
       font-weight: 400;
       line-height: 1.5;
-      color: #ffffff;
-      text-decoration: none;
+      color: #ffffff !important;
+      text-decoration: none !important;
       transition: opacity 0.3s ease;
       display: inline-block;
     }
 
     .footer__menu-link:hover {
       opacity: 0.7;
-      text-decoration: underline;
     }
 
     .footer__menu-toggle {
@@ -445,7 +450,7 @@
 
       .footer__inner {
         flex-direction: column;
-        align-items: stretch;
+        align-items: center;
         gap: 0;
         padding-left: 0;
         padding-right: 0;
@@ -460,7 +465,7 @@
       .footer__menu-toggle {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         width: 100%;
         height: auto;
         padding: 12px 20px;
@@ -474,7 +479,7 @@
       .footer__menu {
         display: none;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 15px;
         padding-left: 20px;
         padding-right: 20px;
@@ -491,8 +496,8 @@
       }
 
       .footer__social {
-        align-self: flex-end;
-        padding-right: 20px;
+        align-self: center;
+        padding-right: 0;
         padding-top: 15px;
       }
     }
