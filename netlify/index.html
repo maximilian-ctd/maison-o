@@ -1030,13 +1030,20 @@
         if (savedPosition) {
           try {
             const pos = JSON.parse(savedPosition);
-            conciergeButton.style.left = pos.left;
-            conciergeButton.style.right = pos.right;
+            // Immer rechts am Rand fixieren
+            conciergeButton.style.right = pos.right || '30px';
+            conciergeButton.style.left = 'auto';
             conciergeButton.style.top = pos.top;
-            conciergeButton.style.bottom = pos.bottom;
+            conciergeButton.style.bottom = 'auto';
           } catch (e) {
             console.error('Fehler beim Laden der Widget-Position:', e);
           }
+        } else {
+          // Standard-Position: rechts, unten
+          conciergeButton.style.right = '30px';
+          conciergeButton.style.left = 'auto';
+          conciergeButton.style.bottom = '30px';
+          conciergeButton.style.top = 'auto';
         }
       } else {
         // Auf Mobile: Standard-Position verwenden (wird durch CSS gesetzt)
@@ -1072,29 +1079,28 @@
         };
       }
       
-      function setPosition(element, left, top) {
+      function setPosition(element, top) {
         // Nur auf Desktop Position speichern
         if (!isDesktop()) return;
         
-        const heroRect = heroSection.getBoundingClientRect();
         const elementRect = element.getBoundingClientRect();
-        const maxLeft = heroRect.width - elementRect.width;
-        const maxTop = heroRect.height - elementRect.height;
+        const viewportHeight = window.innerHeight;
+        const minTop = 0;
+        const maxTop = viewportHeight - elementRect.height;
         
-        left = Math.max(0, Math.min(left, maxLeft));
-        top = Math.max(0, Math.min(top, maxTop));
+        // Nur vertikale Position begrenzen
+        top = Math.max(minTop, Math.min(top, maxTop));
         
-        element.style.left = left + 'px';
+        // Immer rechts am Rand fixieren
+        element.style.right = '30px';
+        element.style.left = 'auto';
         element.style.top = top + 'px';
-        element.style.right = 'auto';
         element.style.bottom = 'auto';
         
-        // Position nur auf Desktop speichern
+        // Position nur auf Desktop speichern (nur top, right ist immer 30px)
         localStorage.setItem('concierge-widget-position', JSON.stringify({
-          left: left + 'px',
           top: top + 'px',
-          right: 'auto',
-          bottom: 'auto'
+          right: '30px'
         }));
       }
       
@@ -1106,9 +1112,9 @@
         startX = e.clientX;
         startY = e.clientY;
         
-        const pos = getPosition(conciergeButton);
-        initialLeft = pos.left;
-        initialTop = pos.top;
+        // Nur vertikale Start-Position speichern
+        const elementRect = conciergeButton.getBoundingClientRect();
+        initialTop = elementRect.top;
         
         conciergeButton.style.cursor = 'grabbing';
         conciergeButton.style.transition = 'none';
@@ -1118,18 +1124,22 @@
       document.addEventListener('mousemove', function(e) {
         if (!isDragging) return;
         
-        const deltaX = e.clientX - startX;
         const deltaY = e.clientY - startY;
         
-        if (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5) {
+        // Nur vertikale Bewegung zulassen
+        if (Math.abs(deltaY) > 5) {
           hasMoved = true;
         }
         
-        const heroRect = heroSection.getBoundingClientRect();
-        const newLeft = initialLeft + deltaX;
-        const newTop = initialTop + deltaY;
+        // Nur vertikale Position berechnen
+        const elementRect = conciergeButton.getBoundingClientRect();
+        const currentTop = elementRect.top;
+        const newTop = currentTop + deltaY;
         
-        setPosition(conciergeButton, newLeft, newTop);
+        setPosition(conciergeButton, newTop);
+        
+        // Start-Position für nächste Bewegung aktualisieren
+        startY = e.clientY;
       });
       
       document.addEventListener('mouseup', function(e) {
@@ -1165,9 +1175,9 @@
         startX = touch.clientX;
         startY = touch.clientY;
         
-        const pos = getPosition(conciergeButton);
-        initialLeft = pos.left;
-        initialTop = pos.top;
+        // Nur vertikale Start-Position speichern
+        const elementRect = conciergeButton.getBoundingClientRect();
+        initialTop = elementRect.top;
         
         conciergeButton.style.transition = 'none';
         e.preventDefault();
@@ -1177,18 +1187,22 @@
         if (!isDragging) return;
         
         const touch = e.touches[0];
-        const deltaX = touch.clientX - startX;
         const deltaY = touch.clientY - startY;
         
-        if (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5) {
+        // Nur vertikale Bewegung zulassen
+        if (Math.abs(deltaY) > 5) {
           hasMoved = true;
         }
         
-        const heroRect = heroSection.getBoundingClientRect();
-        const newLeft = initialLeft + deltaX;
-        const newTop = initialTop + deltaY;
+        // Nur vertikale Position berechnen
+        const elementRect = conciergeButton.getBoundingClientRect();
+        const currentTop = elementRect.top;
+        const newTop = currentTop + deltaY;
         
-        setPosition(conciergeButton, newLeft, newTop);
+        setPosition(conciergeButton, newTop);
+        
+        // Start-Position für nächste Bewegung aktualisieren
+        startY = touch.clientY;
         e.preventDefault();
       }, { passive: false });
       
@@ -1292,23 +1306,19 @@
   </footer>
 
   <style>
-    footer a {
-      color: #ffffff !important;
-      font-family: 'Montserrat', sans-serif !important;
-    }
-
+    footer a,
     footer a:link,
     footer a:visited,
-    footer a:active {
+    footer a:active,
+    footer a:hover,
+    footer a:focus {
       color: #ffffff !important;
       font-family: 'Montserrat', sans-serif !important;
+      text-decoration: none !important;
     }
 
     footer a:hover {
       opacity: 0.7;
-      text-decoration: none !important;
-      color: #ffffff !important;
-      font-family: 'Montserrat', sans-serif !important;
     }
 
     footer div[style*="display: flex; align-items: center"] a:hover {
