@@ -1092,6 +1092,20 @@
         positionWidgetAtLogoHeight();
       }, { passive: true });
       
+      // Initial positionieren nach kurzer Verzögerung (wenn Logo geladen ist)
+      setTimeout(function() {
+        positionWidgetAtLogoHeight();
+      }, 100);
+      
+      // Auch nach vollständigem Laden der Seite positionieren
+      if (document.readyState === 'complete') {
+        positionWidgetAtLogoHeight();
+      } else {
+        window.addEventListener('load', function() {
+          positionWidgetAtLogoHeight();
+        });
+      }
+      
       // Drag-Funktionalität
       let isDragging = false;
       let startY, initialTop;
