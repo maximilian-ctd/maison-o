@@ -1,0 +1,322 @@
+<section class="welcome section">
+  <div class="container">
+    <div class="welcome__content">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="welcome__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.text_1 != blank -%}
+        <p class="welcome__text">{{ section.settings.text_1 }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.text_2 != blank -%}
+        <p class="welcome__text">{{ section.settings.text_2 }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.text_3 != blank -%}
+        <p class="welcome__text">{{ section.settings.text_3 }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.signature != blank -%}
+        <p class="welcome__signature" id="welcome-signature">{{ section.settings.signature }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+  
+  <!-- Logo Transition - analog zum Hero -->
+  {%- if section.settings.transition_logo != blank -%}
+    <div class="welcome__logo-transition" id="welcome-logo-transition">
+      <div class="welcome__logo-transition-wrapper">
+        <img 
+          src="{{ section.settings.transition_logo | image_url: width: 1200 }}" 
+          alt="{{ section.settings.brand_text | default: 'MAISON Ô' }}" 
+          class="welcome__logo-transition-image"
+          loading="eager"
+        >
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+<style>
+  .welcome {
+    background-color: #340000;
+    color: #ffffff;
+    padding: var(--spacing-3xl) 0;
+    padding-top: calc(var(--spacing-3xl) + 80px);
+    padding-bottom: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin-bottom: -15%;
+  }
+
+  .welcome__content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    flex-grow: 1;
+  }
+
+  .welcome__heading {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 40px;
+    font-weight: 400;
+    margin-bottom: 0;
+    margin-top: 0;
+    color: #ffffff;
+    text-transform: none;
+    letter-spacing: 0.02em;
+  }
+
+  .welcome__text {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.8;
+    margin-bottom: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+    color: #ffffff;
+  }
+
+  /* Moon Dance Font für Signatur */
+  @font-face {
+    font-family: 'Moon Dance';
+    src: url('{{ "MoonDance-Regular.woff2" | asset_url }}') format('woff2'),
+         url('{{ "MoonDance-Regular.woff" | asset_url }}') format('woff'),
+         url('{{ "MoonDance-Regular.ttf" | asset_url }}') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  .welcome__signature {
+    font-family: 'Moon Dance', cursive;
+    font-size: 48px;
+    font-weight: 400;
+    font-style: normal;
+    margin-top: var(--spacing-xl);
+    margin-bottom: calc(var(--spacing-3xl) + 80px);
+    color: #ffffff;
+    transform: rotate(-2deg);
+    display: inline-block;
+  }
+
+  /* Logo Transition - analog zum Hero */
+  .welcome__logo-transition {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(50%);
+    z-index: 2;
+    text-align: center;
+    padding: 0 var(--spacing-lg);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin: 0 auto;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+    align-self: flex-end;
+    margin-top: calc(var(--spacing-xl) * -1);
+  }
+
+  .welcome__logo-transition.visible {
+    opacity: 1;
+  }
+
+  .welcome__logo-transition-wrapper {
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    transition: all 0.3s ease;
+    position: relative;
+    margin: 0;
+    padding: 0;
+  }
+
+  .welcome__logo-transition-wrapper:hover {
+    transform: scale(1.02);
+  }
+
+  .welcome__logo-transition-image {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0;
+    padding: 0;
+    vertical-align: bottom;
+    filter: brightness(0) invert(1);
+  }
+
+  @media (max-width: 1023px) {
+    .welcome__logo-transition {
+      transform: translateY(30%);
+      padding: 0 var(--spacing-md);
+    }
+
+    .welcome__logo-transition-wrapper {
+      max-width: 550px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .welcome {
+      padding: var(--spacing-2xl) 0;
+      padding-top: calc(var(--spacing-2xl) + 60px);
+      padding-bottom: 0;
+    }
+
+    .welcome__heading {
+      font-size: 32px;
+    }
+
+    .welcome__text {
+      font-size: 18px;
+    }
+
+    .welcome__signature {
+      font-size: 36px;
+      transform: rotate(-2deg);
+      margin-bottom: calc(var(--spacing-xl) + 60px);
+    }
+
+    .welcome__logo-transition {
+      transform: translateY(35%);
+      left: 0;
+      right: 0;
+      padding: 0 var(--spacing-lg);
+      margin: 0 auto;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      text-align: center;
+      align-items: flex-end;
+    }
+
+    .welcome__logo-transition-wrapper {
+      max-width: 380px;
+      padding: 0;
+      margin: 0 auto;
+      overflow: visible;
+      align-items: flex-end;
+    }
+
+    .welcome__logo-transition-image {
+      display: block;
+      margin: 0;
+      padding: 0;
+      vertical-align: bottom;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .welcome__logo-transition {
+      transform: translateY(35%);
+      left: 0;
+      right: 0;
+      padding: 0 var(--spacing-lg);
+      margin: 0 auto;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      text-align: center;
+      align-items: flex-end;
+    }
+
+    .welcome__logo-transition-wrapper {
+      max-width: 320px;
+      padding: 0;
+      margin: 0 auto;
+      overflow: visible;
+      align-items: flex-end;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    const signature = document.getElementById('welcome-signature');
+    const logoTransition = document.getElementById('welcome-logo-transition');
+    
+    if (!signature || !logoTransition) return;
+    
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        // Logo einblenden wenn Signatur noch sichtbar ist, aber schon teilweise gescrollt wurde
+        if (entry.isIntersecting && entry.intersectionRatio <= 0.8) {
+          // Signatur ist noch sichtbar, aber schon teilweise gescrollt - Logo einblenden
+          logoTransition.classList.add('visible');
+        } else if (!entry.isIntersecting || entry.intersectionRatio < 0.3) {
+          // Signatur ist größtenteils aus dem Viewport - Logo definitiv einblenden
+          logoTransition.classList.add('visible');
+        } else {
+          // Signatur ist noch vollständig sichtbar - Logo ausblenden
+          logoTransition.classList.remove('visible');
+        }
+      });
+    }, {
+      threshold: [0, 0.2, 0.4, 0.6, 0.8, 1.0],
+      rootMargin: '0px'
+    });
+    
+    observer.observe(signature);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Welcome",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Überschrift",
+      "default": "Bienvenue à la maison"
+    },
+    {
+      "type": "textarea",
+      "id": "text_1",
+      "label": "Text Absatz 1",
+      "default": "Treten Sie ein in unsere Maison, wo sich die Türen zu einer Welt des Luxus, der Raffinesse und der Mode à la française öffnen."
+    },
+    {
+      "type": "textarea",
+      "id": "text_2",
+      "label": "Text Absatz 2",
+      "default": "Jede Woche begrüßen wir neue Kostbarkeiten in unseren salons: von erlesenen pièces pré-désirées bis hin zu all-time classiques, die das Herz jedes Connaisseurs zum Strahlen bringen."
+    },
+    {
+      "type": "textarea",
+      "id": "text_3",
+      "label": "Text Absatz 3",
+      "default": "Maison Ô ist mehr als eine Marke - es ist ein univers raffiné, ein Haus voller Räume, in denen jede Kollektion eine eigene Geschichte erzählt."
+    },
+    {
+      "type": "text",
+      "id": "signature",
+      "label": "Signatur",
+      "default": "Noa & Maximilian"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Welcome"
+    }
+  ]
+}
+{% endschema %}
+
+
+

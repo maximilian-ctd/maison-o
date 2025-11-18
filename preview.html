@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maison Ô - Theme Vorschau</title>
+  <link rel="stylesheet" href="assets/base.css">
+  <style>
+    :root {
+      --color-primary: #8B0000;
+      --color-secondary: #ffffff;
+      --color-text: #000000;
+      --color-background: #ffffff;
+    }
+
+    /* Header Styles */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: var(--color-background);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .header__top {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .header__top-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .header__menu-toggle {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .header__menu-toggle span {
+      width: 100%;
+      height: 2px;
+      background-color: var(--color-text);
+    }
+
+    .header__top-center {
+      flex: 1;
+      text-align: center;
+    }
+
+    .header__page-title {
+      font-size: 1.4rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .header__exclusive-link {
+      font-size: 1.4rem;
+      text-decoration: underline;
+      color: var(--color-text);
+      white-space: nowrap;
+    }
+
+    .header__bottom {
+      padding: 1rem 0;
+    }
+
+    .header__bottom-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .header__concierge-link,
+    .header__entree-link {
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text);
+      white-space: nowrap;
+    }
+
+    .header__brand {
+      flex: 1;
+      text-align: center;
+    }
+
+    .header__brand-text {
+      font-size: 3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-primary);
+    }
+
+    /* Hero Styles */
+    .hero-maison {
+      position: relative;
+      overflow: hidden;
+      background-color: #1a1a1a;
+    }
+
+    .hero-maison__wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4rem 2rem;
+      min-height: 600px;
+    }
+
+    .hero-maison__statue {
+      position: relative;
+      z-index: 1;
+      flex: 0 0 auto;
+    }
+
+    .hero-maison__statue--left {
+      margin-right: auto;
+    }
+
+    .hero-maison__statue--right {
+      margin-left: auto;
+    }
+
+    .hero-maison__placeholder-content {
+      text-align: center;
+      color: #D4AF37;
+      opacity: 0.5;
+    }
+
+    .hero-maison__placeholder-text {
+      margin-top: 0.75rem;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Welcome Styles */
+    .welcome {
+      background-color: var(--color-primary);
+      color: var(--color-secondary);
+      padding: 4rem 0;
+    }
+
+    .welcome__content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+
+    .welcome__heading {
+      font-size: 4rem;
+      font-weight: 400;
+      margin-bottom: 2rem;
+      color: var(--color-secondary);
+    }
+
+    .welcome__text {
+      font-size: 1.6rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      color: var(--color-secondary);
+    }
+
+    .welcome__signature {
+      font-size: 1.8rem;
+      font-style: italic;
+      margin-top: 2rem;
+      color: var(--color-secondary);
+    }
+
+    /* Newsletter Form Styles */
+    .newsletter-form {
+      background-color: var(--color-background);
+      padding: 4rem 0;
+      position: relative;
+      z-index: 10;
+      margin-top: -100px;
+    }
+
+    .newsletter-form__wrapper {
+      background-color: var(--color-background);
+      border-radius: 1rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .newsletter-form__image {
+      width: 100%;
+      aspect-ratio: 1449 / 937;
+      overflow: hidden;
+      background-color: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .newsletter-form__placeholder-text {
+      font-size: 1.4rem;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .newsletter-form__content {
+      padding: 3rem;
+    }
+
+    .newsletter-form__heading {
+      font-size: 2.4rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      text-align: center;
+      color: var(--color-text);
+    }
+
+    .newsletter-form__question {
+      font-size: 1.6rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: var(--color-text);
+    }
+
+    .newsletter-form__fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .newsletter-form__input {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      background-color: var(--color-primary);
+      color: var(--color-secondary);
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1.4rem;
+      font-family: inherit;
+    }
+
+    .newsletter-form__input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .newsletter-form__submit {
+      width: 100%;
+      padding: 1rem;
+      background-color: transparent;
+      color: var(--color-text);
+      border: none;
+      font-size: 1.4rem;
+      text-decoration: underline;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    /* Product Grid Styles */
+    .featured-collection {
+      background-color: var(--color-primary);
+      color: var(--color-secondary);
+      padding: 4rem 0;
+    }
+
+    .featured-collection__title {
+      font-size: 3rem;
+      margin-bottom: 3rem;
+      color: var(--color-secondary);
+      text-align: center;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card__image-wrapper {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1;
+      background-color: #f5f5f5;
+      margin-bottom: 1rem;
+      border-radius: 0.5rem;
+    }
+
+    .product-card__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-card__title {
+      font-size: 1.6rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: var(--color-secondary);
+    }
+
+    .product-card__price {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.4rem;
+      color: var(--color-secondary);
+    }
+
+    .product-card__price--current {
+      font-weight: 600;
+    }
+
+    /* Footer Styles */
+    .footer {
+      background-color: #000000;
+      color: #ffffff;
+      padding: 2rem 0;
+      margin-top: 4rem;
+    }
+
+    .footer__inner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .footer__menu {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .footer__menu-link {
+      font-size: 1.4rem;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    @media (max-width: 767px) {
+      .header__brand-text {
+        font-size: 2rem;
+      }
+
+      .hero-maison__wrapper {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2rem 1.5rem;
+        min-height: 400px;
+      }
+
+      .welcome__heading {
+        font-size: 3rem;
+      }
+
+      .newsletter-form {
+        margin-top: -50px;
+      }
+
+      .newsletter-form__fields {
+        grid-template-columns: 1fr;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header" role="banner">
+    <div class="header__top">
+      <div class="header__top-inner">
+        <button class="header__menu-toggle" aria-label="Menü öffnen">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="header__top-center">
+          <span class="header__page-title">Startseite</span>
+        </div>
+
+        <a href="#" class="header__exclusive-link">Sichern Sie sich Ihren exklusiven Platz</a>
+      </div>
+    </div>
+
+    <div class="header__bottom">
+      <div class="header__bottom-inner">
+        <a href="#" class="header__concierge-link">Concierge</a>
+
+        <a href="#" class="header__brand">
+          <span class="header__brand-text">MAISON Ô</span>
+        </a>
+
+        <a href="#" class="header__entree-link">Entrée →</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-maison">
+    <div class="hero-maison__wrapper">
+      <div class="hero-maison__statue hero-maison__statue--left">
+        <div class="hero-maison__placeholder-content">
+          <svg width="120" height="200" viewBox="0 0 120 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="40" y="20" width="40" height="60" rx="5" fill="#D4AF37" opacity="0.3"/>
+            <rect x="30" y="80" width="60" height="100" rx="5" fill="#D4AF37" opacity="0.3"/>
+            <circle cx="60" cy="50" r="15" fill="#D4AF37" opacity="0.5"/>
+          </svg>
+          <p class="hero-maison__placeholder-text">Statuen Bild</p>
+        </div>
+      </div>
+
+      <div class="hero-maison__statue hero-maison__statue--right">
+        <div class="hero-maison__placeholder-content">
+          <svg width="120" height="200" viewBox="0 0 120 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="40" y="20" width="40" height="60" rx="5" fill="#D4AF37" opacity="0.3"/>
+            <rect x="30" y="80" width="60" height="100" rx="5" fill="#D4AF37" opacity="0.3"/>
+            <circle cx="60" cy="50" r="15" fill="#D4AF37" opacity="0.5"/>
+          </svg>
+          <p class="hero-maison__placeholder-text">Statuen Bild</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Welcome Section -->
+  <section class="welcome">
+    <div class="welcome__content">
+      <h2 class="welcome__heading">Bienvenue à la maison</h2>
+      <p class="welcome__text">Treten Sie ein in unsere Maison, wo sich die Türen zu einer Welt des Luxus, der Raffinesse und der Mode à la française öffnen.</p>
+      <p class="welcome__text">Jede Woche begrüßen wir neue Kostbarkeiten in unseren salons: von erlesenen pièces pré-désirées bis hin zu all-time classiques, die das Herz jedes Connaisseurs zum Strahlen bringen.</p>
+      <p class="welcome__text">Maison Ô ist mehr als eine Marke - es ist ein univers raffiné, ein Haus voller Räume, in denen jede Kollektion eine eigene Geschichte erzählt.</p>
+      <p class="welcome__signature">Noa & Maximilian</p>
+    </div>
+  </section>
+
+  <!-- Newsletter Form -->
+  <section class="newsletter-form">
+    <div class="container">
+      <div class="newsletter-form__wrapper">
+        <div class="newsletter-form__image">
+          <span class="newsletter-form__placeholder-text">1449 x 937</span>
+        </div>
+
+        <div class="newsletter-form__content">
+          <h2 class="newsletter-form__heading">Sichern Sie sich Ihren exklusiven Platz</h2>
+          <p class="newsletter-form__question">Wie dürfen wir Sie nennen?</p>
+
+          <form class="newsletter-form__form">
+            <div class="newsletter-form__fields">
+              <input
+                type="text"
+                class="newsletter-form__input"
+                placeholder="Vorname"
+                required
+              >
+              <input
+                type="text"
+                class="newsletter-form__input"
+                placeholder="Nachname"
+                required
+              >
+            </div>
+
+            <button type="submit" class="newsletter-form__submit">nächster Schritt</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="featured-collection">
+    <div class="container">
+      <h2 class="featured-collection__title">Ausgewählte Produkte</h2>
+      
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-card__image-wrapper">
+            <div class="product-card__image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">👕</div>
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__title">Premium T-Shirt</h3>
+            <div class="product-card__price">
+              <span class="product-card__price--current">€39,99</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card__image-wrapper">
+            <div class="product-card__image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">🧥</div>
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__title">Designer Jacke</h3>
+            <div class="product-card__price">
+              <span class="product-card__price--current">€199,99</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card__image-wrapper">
+            <div class="product-card__image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">👟</div>
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__title">Luxus Sneakers</h3>
+            <div class="product-card__price">
+              <span class="product-card__price--current">€149,99</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <nav class="footer__nav">
+        <ul class="footer__menu">
+          <li><a href="#" class="footer__menu-link">Impressum</a></li>
+          <li><a href="#" class="footer__menu-link">Datenschutz</a></li>
+          <li><a href="#" class="footer__menu-link">AGB</a></li>
+          <li><a href="#" class="footer__menu-link">Widerruf</a></li>
+          <li><a href="#" class="footer__menu-link">RPSG</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<header class="header" role="banner">
+  <div class="header__top">
+    <div class="container">
+      <div class="header__top-inner">
+        <div class="header__logo-menu-wrapper">
+          {%- if section.settings.logo_image != blank -%}
+            <img 
+              src="{{ section.settings.logo_image | image_url: width: 40 }}" 
+              alt="Maison Ô Logo"
+              class="header__logo-image"
+            >
+          {%- else -%}
+            <div class="header__logo-placeholder">Ô</div>
+          {%- endif -%}
+          <button 
+            class="header__menu-toggle" 
+            data-mobile-menu-toggle
+            aria-label="Menü öffnen"
+            aria-expanded="false"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+        
+        <div class="header__top-center">
+          <span class="header__page-title">{{ section.settings.page_title | default: "Startseite" }}</span>
+        </div>
+
+        <a href="{{ section.settings.exclusive_link | default: routes.root_url }}" class="header__exclusive-link">
+          {{ section.settings.exclusive_text | default: "Sichern Sie sich Ihren exklusiven Platz" }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="header__bottom">
+    <div class="container">
+      <div class="header__bottom-inner">
+        <a href="{{ section.settings.concierge_link | default: routes.root_url }}" class="header__concierge-link">
+          {{ section.settings.concierge_text | default: "Concierge" }}
+        </a>
+
+        <a href="{{ routes.root_url }}" class="header__brand">
+          <span class="header__brand-text">{{ section.settings.brand_text | default: "MAISON Ô" }}</span>
+        </a>
+
+        <div class="header__spacer"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="header__mobile-menu" data-mobile-menu>
+    {%- if section.settings.menu != blank -%}
+      <nav class="header__mobile-nav">
+        <ul class="header__mobile-menu-list">
+          {%- for link in section.settings.menu.links -%}
+            <li class="header__mobile-menu-item">
+              <a href="{{ link.url }}" class="header__mobile-menu-link">
+                {{ link.title }}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    {%- endif -%}
+  </div>
+</header>
+
+<style>
+  /* Montserrat für alle Header-Elemente */
+  .header {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--color-background);
+    border-bottom: var(--border-width) solid rgba(0, 0, 0, 0.1);
+  }
+
+  .header__top {
+    padding: var(--spacing-sm) 0;
+    border-bottom: var(--border-width) solid rgba(0, 0, 0, 0.05);
+  }
+
+  .header__top-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+  }
+
+  .header__logo-menu-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .header__logo-image {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    display: block;
+  }
+
+  .header__logo-placeholder {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1;
+  }
+
+  .header__menu-toggle {
+    display: flex !important;
+    flex-direction: column;
+    gap: 4px;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .header__menu-toggle span {
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-text);
+    transition: all var(--transition-base);
+  }
+
+  .header__menu-toggle:hover span {
+    background-color: var(--color-primary);
+  }
+
+  .header__top-center {
+    flex: 1;
+    text-align: center;
+  }
+
+  .header__page-title {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .header__exclusive-link {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: var(--color-text);
+    white-space: nowrap;
+    transition: all var(--transition-base);
+  }
+
+  .header__exclusive-link:hover {
+    text-decoration: underline;
+    color: var(--color-primary);
+  }
+
+  .header__bottom {
+    padding: var(--spacing-md) 0;
+  }
+
+  .header__bottom-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-lg);
+  }
+
+  .header__concierge-link {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text);
+    white-space: nowrap;
+    text-decoration: none;
+    transition: all var(--transition-base);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .header__spacer {
+    flex: 1;
+  }
+
+  .header__concierge-link:hover {
+    text-decoration: underline;
+    color: var(--color-primary);
+  }
+
+  .header__brand {
+    flex: 1;
+    text-align: center;
+  }
+
+  .header__brand-text {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .header__mobile-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-background);
+    border-top: var(--border-width) solid rgba(0, 0, 0, 0.1);
+    padding: var(--spacing-lg);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-base);
+    z-index: 999;
+  }
+
+  .header__mobile-menu.is-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .header__mobile-menu-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header__mobile-menu-item {
+    border-bottom: var(--border-width) solid rgba(0, 0, 0, 0.1);
+  }
+
+  .header__mobile-menu-link {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    display: block;
+    padding: var(--spacing-md) 0;
+    font-size: 1.6rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: all var(--transition-base);
+  }
+
+  .header__mobile-menu-link:hover {
+    text-decoration: underline;
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 767px) {
+    .header__logo-image {
+      width: 32px;
+      height: 32px;
+    }
+
+    .header__menu-toggle {
+      width: 18px;
+      height: 18px;
+      gap: 3px;
+    }
+
+    .header__mobile-menu {
+      display: block;
+    }
+    .header__exclusive-link {
+      font-size: 1.2rem;
+    }
+
+    .header__brand-text {
+      font-size: 2rem;
+    }
+
+    .header__concierge-link {
+      font-size: 1.2rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Logo Bild (Ô)",
+      "info": "Logo wird in weiß angezeigt"
+    },
+    {
+      "type": "text",
+      "id": "page_title",
+      "label": "Seitentitel (oben Mitte)",
+      "default": "Startseite"
+    },
+    {
+      "type": "text",
+      "id": "exclusive_text",
+      "label": "Exklusiv-Link Text (oben rechts)",
+      "default": "Sichern Sie sich Ihren exklusiven Platz"
+    },
+    {
+      "type": "url",
+      "id": "exclusive_link",
+      "label": "Exklusiv-Link URL"
+    },
+    {
+      "type": "text",
+      "id": "concierge_text",
+      "label": "Concierge Text (unten links)",
+      "default": "Concierge"
+    },
+    {
+      "type": "url",
+      "id": "concierge_link",
+      "label": "Concierge Link URL"
+    },
+    {
+      "type": "text",
+      "id": "brand_text",
+      "label": "Markenname (unten Mitte)",
+      "default": "MAISON Ô"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "Mobile Menü"
+    }
+  ]
+}
+{% endschema %}

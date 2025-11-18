@@ -1,0 +1,278 @@
+{% comment %}
+  Produktseite Template
+{% endcomment %}
+
+<div class="product-page section">
+  <div class="container">
+    <div class="product-page__grid grid grid--2-col">
+      <div class="product-page__images">
+        {%- if product.featured_image != blank -%}
+          <div class="product-page__main-image">
+            <img
+              src="{{ product.featured_image | image_url: width: 1200 }}"
+              alt="{{ product.featured_image.alt | escape }}"
+              class="product-page__image"
+              id="ProductImage"
+              loading="eager"
+            >
+          </div>
+        {%- endif -%}
+
+        {%- if product.images.size > 1 -%}
+          <div class="product-page__thumbnail-list">
+            {%- for image in product.images -%}
+              <button
+                type="button"
+                class="product-page__thumbnail"
+                data-thumbnail-image="{{ image | image_url: width: 1200 }}"
+                aria-label="Bild {{ forloop.index }} anzeigen"
+              >
+                <img
+                  src="{{ image | image_url: width: 200 }}"
+                  alt="{{ image.alt | escape }}"
+                  loading="lazy"
+                >
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="product-page__info">
+        <h1 class="product-page__title">{{ product.title }}</h1>
+
+        <div class="product-page__price">
+          {%- if product.compare_at_price > product.price -%}
+            <span class="product-page__price--compare">
+              {{ product.compare_at_price | money }}
+            </span>
+          {%- endif -%}
+          <span class="product-page__price--current">
+            {{ product.price | money }}
+          </span>
+        </div>
+
+        {%- if product.description != blank -%}
+          <div class="product-page__description">
+            {{ product.description }}
+          </div>
+        {%- endif -%}
+
+        <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" id="ProductForm" class="product-page__form">
+          {%- unless product.has_only_default_variant -%}
+            <div class="product-page__variants">
+              {%- for option in product.options_with_values -%}
+                <div class="product-page__variant">
+                  <label for="Option-{{ forloop.index }}" class="product-page__variant-label">
+                    {{ option.name }}
+                  </label>
+                  <select
+                    name="options[{{ option.name | escape }}]"
+                    id="Option-{{ forloop.index }}"
+                    class="product-page__variant-select"
+                  >
+                    {%- for value in option.values -%}
+                      <option value="{{ value | escape }}" {% if option.selected_value == value %}selected{% endif %}>
+                        {{ value }}
+                      </option>
+                    {%- endfor -%}
+                  </select>
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endunless -%}
+
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" id="ProductVariantId">
+
+          <div class="product-page__quantity">
+            <label for="Quantity" class="product-page__quantity-label">Menge</label>
+            <input
+              type="number"
+              id="Quantity"
+              name="quantity"
+              value="1"
+              min="1"
+              class="product-page__quantity-input"
+            >
+          </div>
+
+          <button
+            type="submit"
+            name="add"
+            class="button button--large product-page__add-button"
+            {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
+          >
+            {%- if product.selected_or_first_available_variant.available -%}
+              In den Warenkorb
+            {%- else -%}
+              Ausverkauft
+            {%- endif -%}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .product-page__grid {
+    gap: var(--spacing-2xl);
+    align-items: start;
+  }
+
+  .product-page__main-image {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .product-page__image {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+  }
+
+  .product-page__thumbnail-list {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+  }
+
+  .product-page__thumbnail {
+    width: 80px;
+    height: 80px;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color var(--transition-fast);
+  }
+
+  .product-page__thumbnail:hover,
+  .product-page__thumbnail:focus {
+    border-color: var(--color-primary);
+  }
+
+  .product-page__thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product-page__title {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .product-page__price {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    font-size: 2rem;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .product-page__price--compare {
+    text-decoration: line-through;
+    opacity: 0.6;
+    font-size: 1.6rem;
+  }
+
+  .product-page__price--current {
+    font-weight: 700;
+  }
+
+  .product-page__description {
+    font-size: 1.6rem;
+    line-height: 1.8;
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .product-page__form {
+    margin-top: var(--spacing-xl);
+  }
+
+  .product-page__variants {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .product-page__variant {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .product-page__variant-label {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .product-page__variant-select {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: var(--border-width) solid rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius);
+    font-size: 1.4rem;
+    background-color: var(--color-background);
+  }
+
+  .product-page__quantity {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .product-page__quantity-label {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .product-page__quantity-input {
+    width: 100px;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: var(--border-width) solid rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius);
+    font-size: 1.4rem;
+  }
+
+  .product-page__add-button {
+    width: 100%;
+  }
+
+  @media (max-width: 767px) {
+    .product-page__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Thumbnail click handler
+    const thumbnails = document.querySelectorAll('.product-page__thumbnail');
+    const mainImage = document.getElementById('ProductImage');
+    
+    thumbnails.forEach(thumbnail => {
+      thumbnail.addEventListener('click', () => {
+        const imageUrl = thumbnail.getAttribute('data-thumbnail-image');
+        if (mainImage && imageUrl) {
+          mainImage.src = imageUrl;
+        }
+      });
+    });
+
+    // Variant selection handler
+    const variantSelects = document.querySelectorAll('.product-page__variant-select');
+    const variantIdInput = document.getElementById('ProductVariantId');
+    
+    // This would need to be connected to Shopify's variant selection logic
+    // For now, it's a basic implementation
+  });
+</script>
+
+
+
+

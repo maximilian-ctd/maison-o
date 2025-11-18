@@ -1,0 +1,1873 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hero Design Preview - Maison Ô</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <!-- Moon Dance Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Moon+Dance&display=swap" rel="stylesheet">
+  <!-- HeyFlow Widget Script -->
+  <script src="https://assets.prd.heyflow.com/builder/widget/latest/webview.js"></script>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: #f5f5f5;
+      overflow-x: hidden;
+    }
+
+    .preview-container {
+      max-width: 100%;
+      margin: 0;
+      background: white;
+    }
+
+    /* Hero Section */
+    .hero-maison {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Video Background */
+    .hero-maison__video-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .hero-maison__video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* Video Overlay - Sehr dunkel für atmosphärischen Effekt */
+    .hero-maison__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+
+    /* Brand Logo - Unten zentriert, fließt in nächsten Abschnitt über */
+    .hero-maison__brand {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(35%);
+      z-index: 2;
+      text-align: center;
+      padding: 0 20px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      margin: 0;
+    }
+
+    .hero-maison__brand-logo-wrapper {
+      max-width: 800px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      transition: all 0.3s ease;
+      position: relative;
+      margin: 0;
+      padding: 0;
+    }
+
+    .hero-maison__brand-logo-wrapper:hover {
+      transform: scale(1.02);
+    }
+
+    .hero-maison__brand-logo {
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      margin: 0;
+      padding: 0;
+      vertical-align: bottom;
+      /* Logo hat bereits die richtige Farbe - kein Filter nötig */
+    }
+
+
+    /* Fallback: Brand Text wenn kein Logo */
+    .hero-maison__brand-text {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 8rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #340000;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      line-height: 1.1;
+      margin: 0;
+      display: none;
+    }
+
+    /* Hamburger Menu - Links oben */
+    .hero-maison__menu-toggle {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 24px;
+      height: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .hero-maison__menu-toggle span {
+      width: 100%;
+      height: 2px;
+      background-color: #ffffff;
+    }
+
+    /* Top Right Text - Montserrat, weicher und dezenter */
+    .hero-maison__top-right-text {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin-top: -60px;
+      z-index: 1000 !important;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.5rem;
+      font-weight: 400;
+      text-decoration: none;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 0, 0, 0.4);
+      transition: all 0.3s ease;
+      cursor: pointer !important;
+      letter-spacing: 0.05em;
+      line-height: 1.4;
+      background: transparent;
+      border: none;
+      padding: 12px 24px;
+      text-align: center;
+      white-space: nowrap;
+      pointer-events: auto !important;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .hero-maison__top-right-text:hover {
+      color: rgba(255, 255, 255, 1) !important;
+      text-decoration: underline !important;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 2px;
+    }
+
+    .hero-maison__top-right-text:active {
+      opacity: 0.9;
+    }
+
+    /* HeyFlow Modal */
+    .hero-maison__heyflow-modal {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      z-index: 10000 !important;
+      display: none !important;
+      align-items: center !important;
+      justify-content: center !important;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      pointer-events: none;
+    }
+
+    .hero-maison__heyflow-modal.is-open {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: all !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    .hero-maison__heyflow-modal-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+    }
+
+    .hero-maison__heyflow-modal-content {
+      position: relative;
+      background: #ffffff;
+      padding: 0;
+      border-radius: 8px;
+      max-width: 800px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+      z-index: 1;
+    }
+
+    .hero-maison__heyflow-modal.is-open .hero-maison__heyflow-modal-content {
+      transform: scale(1);
+    }
+
+    .hero-maison__heyflow-modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      color: #000000;
+      transition: all 0.3s ease;
+      padding: 0;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-maison__heyflow-modal-close:hover {
+      background: rgba(255, 255, 255, 1);
+      transform: scale(1.1);
+    }
+
+    .hero-maison__heyflow-modal-close svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .hero-maison__heyflow-modal-content heyflow-wrapper {
+      display: block;
+      width: 100%;
+      min-height: 400px;
+    }
+
+    @media (max-width: 767px) {
+      .hero-maison__heyflow-modal-content heyflow-wrapper {
+        min-height: 300px;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-maison__heyflow-modal-content heyflow-wrapper {
+        min-height: 250px;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .hero-maison__heyflow-modal {
+        padding: 10px;
+      }
+
+      .hero-maison__heyflow-modal-content {
+        max-width: 100%;
+        width: 100%;
+        max-height: 95vh;
+        border-radius: 0;
+        margin: 0;
+        transform: scale(1);
+      }
+
+      .hero-maison__heyflow-modal-close {
+        top: 10px;
+        right: 10px;
+        width: 36px;
+        height: 36px;
+        background: rgba(255, 255, 255, 1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-maison__heyflow-modal-close svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-maison__heyflow-modal {
+        padding: 0;
+      }
+
+      .hero-maison__heyflow-modal-content {
+        max-width: 100%;
+        width: 100%;
+        max-height: 100vh;
+        border-radius: 0;
+        height: 100vh;
+      }
+
+      .hero-maison__heyflow-modal-close {
+        top: 8px;
+        right: 8px;
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    /* Countdown zum Go-Live */
+    .hero-maison__countdown {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin-top: -100px;
+      z-index: 2;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 8px 16px;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-maison__countdown-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.2rem;
+    }
+
+    .hero-maison__countdown-value {
+      font-size: 0.9rem;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: 0.05em;
+      transition: font-size 0.3s ease, transform 0.3s ease;
+    }
+
+    .hero-maison__countdown-item:hover .hero-maison__countdown-value {
+      font-size: 1.8rem;
+      transform: scale(1.1);
+    }
+
+    .hero-maison__countdown-label {
+      font-size: 0.4rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      opacity: 0.9;
+      transition: opacity 0.3s ease;
+    }
+
+    .hero-maison__countdown-item:hover .hero-maison__countdown-label {
+      opacity: 1;
+    }
+
+    .hero-maison__countdown-separator {
+      font-size: 0.75rem;
+      font-weight: 300;
+      opacity: 0.7;
+      padding: 0 0.2rem;
+      transition: opacity 0.3s ease;
+    }
+
+    .hero-maison__countdown-item {
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .hero-maison__countdown-item:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Bottom Right Icon - Concierge */
+    @keyframes concierge-pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 4px 12px rgba(52, 0, 0, 0.5);
+      }
+      50% {
+        transform: scale(1.03);
+        box-shadow: 0 4px 12px rgba(52, 0, 0, 0.6), 0 0 0 6px rgba(52, 0, 0, 0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 4px 12px rgba(52, 0, 0, 0.5);
+      }
+    }
+
+    @keyframes concierge-pulse-ring {
+      0% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.3);
+      }
+    }
+
+    .hero-maison__concierge-icon {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      z-index: 2;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 1);
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      background: rgba(52, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      cursor: grab;
+      user-select: none;
+      touch-action: none;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(52, 0, 0, 0.5);
+      animation: concierge-pulse 3s ease-in-out infinite;
+      padding: 0;
+    }
+
+    .hero-maison__concierge-icon::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      animation: concierge-pulse-ring 3s ease-out infinite;
+      pointer-events: none;
+    }
+
+    .hero-maison__concierge-icon-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      border-radius: 50%;
+      opacity: 1;
+      transition: all 0.3s ease;
+    }
+
+    .hero-maison__concierge-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: currentColor;
+    }
+
+    .hero-maison__concierge-icon:hover {
+      color: rgba(255, 255, 255, 1);
+      border-color: rgba(255, 255, 255, 1);
+      background: rgba(52, 0, 0, 0.95);
+      transform: translateY(-3px) scale(1.1);
+      box-shadow: 0 8px 24px rgba(52, 0, 0, 0.6), 0 0 30px rgba(255, 255, 255, 0.3);
+      animation: none;
+    }
+
+    .hero-maison__concierge-icon:hover .hero-maison__concierge-icon-image {
+      opacity: 1;
+      transform: scale(1.15);
+    }
+
+
+
+    /* Placeholder für Video */
+    .hero-maison__video-placeholder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 1.4rem;
+      z-index: 0;
+    }
+
+    .hero-maison__video-placeholder code {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 1rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 1023px) {
+      .hero-maison {
+        min-height: 500px;
+      }
+
+      .hero-maison__brand {
+        transform: translateX(-50%) translateY(30%);
+      }
+
+      .hero-maison__brand-logo-wrapper {
+        max-width: 550px;
+      }
+
+      .hero-maison__brand-text {
+        font-size: 5rem;
+      }
+    }
+
+    @media (max-width: 1023px) {
+      .hero-maison {
+        min-height: 500px;
+        height: 80vh;
+      }
+
+      .hero-maison__brand {
+        transform: translateX(-50%) translateY(30%);
+        padding: 0 20px;
+      }
+
+      .hero-maison__brand-logo-wrapper {
+        max-width: 550px;
+      }
+
+      .hero-maison__brand-text {
+        font-size: 5rem;
+      }
+
+      .hero-maison__top-right-text {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin-top: -50px;
+        font-size: 1.3rem;
+        text-align: center;
+      }
+
+      .hero-maison__top-right-text:hover {
+        text-decoration: underline !important;
+        text-underline-offset: 4px;
+        text-decoration-thickness: 2px;
+      }
+
+      .hero-maison__countdown {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin-top: -90px;
+        padding: 8px 16px;
+        gap: 0.35rem;
+      }
+
+      .hero-maison__countdown-value {
+        font-size: 0.75rem;
+      }
+
+      .hero-maison__countdown-item:hover .hero-maison__countdown-value {
+        font-size: 1.5rem;
+      }
+
+      .hero-maison__countdown-label {
+        font-size: 0.35rem;
+      }
+
+      .hero-maison__countdown-separator {
+        font-size: 0.65rem;
+      }
+
+      .hero-maison__concierge-icon {
+        bottom: 25px;
+        right: 25px;
+        width: 90px;
+        height: 90px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .hero-maison {
+        min-height: 100vh;
+        height: 100vh;
+        overflow: visible;
+      }
+
+      .hero-maison__brand {
+        transform: translateX(-50%) translateY(35%);
+        left: 50%;
+        right: auto;
+        padding: 0 20px;
+        margin: 0;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        text-align: center;
+        align-items: flex-end;
+      }
+
+      .hero-maison__brand-logo-wrapper {
+        max-width: 380px;
+        padding: 0;
+        margin: 0 auto;
+        overflow: visible;
+        align-items: flex-end;
+      }
+
+      .hero-maison__brand-logo {
+        display: block;
+        margin: 0;
+        padding: 0;
+        vertical-align: bottom;
+      }
+
+      .hero-maison__brand-text {
+        font-size: 2.8rem;
+        letter-spacing: 0.05em;
+        line-height: 1.2;
+        text-align: left;
+      }
+
+      .hero-maison__menu-toggle {
+        top: 15px;
+        left: 15px;
+        width: 20px;
+        height: 20px;
+      }
+
+      .hero-maison__top-right-text {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin-top: -40px;
+        font-size: 1.1rem;
+        max-width: 90%;
+        text-align: center;
+        line-height: 1.4;
+        white-space: normal;
+      }
+
+      .hero-maison__top-right-text:hover {
+        text-decoration: underline !important;
+        text-underline-offset: 4px;
+        text-decoration-thickness: 2px;
+      }
+
+      .hero-maison__countdown {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin-top: -80px;
+        padding: 6px 12px;
+        gap: 0.25rem;
+        z-index: 3;
+      }
+
+      .hero-maison__countdown-value {
+        font-size: 0.7rem;
+      }
+
+      .hero-maison__countdown-item:hover .hero-maison__countdown-value {
+        font-size: 1.4rem;
+      }
+
+      .hero-maison__countdown-label {
+        font-size: 0.3rem;
+      }
+
+      .hero-maison__countdown-separator {
+        font-size: 0.6rem;
+      }
+
+      .hero-maison__concierge-icon {
+        bottom: 60px;
+        right: 20px;
+        left: auto;
+        width: 75px;
+        height: 75px;
+        border-width: 1.5px;
+        position: absolute;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero-maison__concierge-icon-image {
+        width: 100%;
+        height: 100%;
+      }
+
+      .hero-maison__concierge-icon svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-maison {
+        min-height: 100vh;
+        height: 100vh;
+        overflow: visible;
+      }
+
+      .hero-maison__brand {
+        transform: translateX(-50%) translateY(35%);
+        left: 50%;
+        right: auto;
+        padding: 0 20px;
+        margin: 0;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        text-align: center;
+        align-items: flex-end;
+      }
+
+      .hero-maison__brand-logo-wrapper {
+        max-width: 320px;
+        padding: 0;
+        margin: 0 auto;
+        overflow: visible;
+        align-items: flex-end;
+      }
+
+      .hero-maison__brand-logo {
+        display: block;
+        margin: 0;
+        padding: 0;
+        vertical-align: bottom;
+      }
+
+      .hero-maison__brand-text {
+        font-size: 2.2rem;
+        letter-spacing: 0.03em;
+        text-align: left;
+      }
+
+      .hero-maison__top-right-text {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin-top: -35px;
+        font-size: 1rem;
+        max-width: 90%;
+        text-align: center;
+        white-space: normal;
+      }
+
+      .hero-maison__top-right-text:hover {
+        text-decoration: underline !important;
+        text-underline-offset: 4px;
+        text-decoration-thickness: 2px;
+      }
+
+      .hero-maison__countdown {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin-top: -75px;
+        padding: 5px 10px;
+        gap: 0.2rem;
+        z-index: 3;
+      }
+
+      .hero-maison__countdown-value {
+        font-size: 0.65rem;
+      }
+
+      .hero-maison__countdown-item:hover .hero-maison__countdown-value {
+        font-size: 1.3rem;
+      }
+
+      .hero-maison__countdown-label {
+        font-size: 0.28rem;
+      }
+
+      .hero-maison__countdown-separator {
+        font-size: 0.55rem;
+      }
+
+      .hero-maison__concierge-icon {
+        bottom: 50px;
+        right: 15px;
+        left: auto;
+        width: 65px;
+        height: 65px;
+        position: absolute;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero-maison__concierge-icon-image {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+
+    /* Preview Info */
+    .preview-info {
+      padding: 40px 20px;
+      background: #f9f9f9;
+      border-top: 2px solid #8B0000;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .preview-info h2 {
+      color: #8B0000;
+      margin-bottom: 15px;
+      font-size: 2rem;
+    }
+
+    .preview-info p {
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    .preview-info code {
+      background: #e8e8e8;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+
+    .preview-info ul {
+      margin-left: 20px;
+      margin-top: 10px;
+      color: #666;
+    }
+
+    .preview-info li {
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="preview-container">
+    <!-- Hero Section -->
+    <section class="hero-maison">
+      <!-- Video Background -->
+      <div class="hero-maison__video-wrapper">
+        <!-- Video Element - Hier kannst du dein Video einfügen -->
+        <video 
+          class="hero-maison__video" 
+          autoplay 
+          muted 
+          loop 
+          playsinline
+          id="heroVideo"
+        >
+          <!-- Video: videoplayback.mp4 -->
+          <source src="videoplayback.mp4" type="video/mp4">
+        </video>
+        
+        <!-- Placeholder wenn kein Video -->
+        <div class="hero-maison__video-placeholder" id="videoPlaceholder">
+          <div style="text-align: center;">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 20px; opacity: 0.5;">
+              <circle cx="40" cy="40" r="35" stroke="currentColor" stroke-width="2"/>
+              <path d="M32 25L32 55L55 40L32 25Z" fill="currentColor"/>
+            </svg>
+            <p style="font-size: 1.6rem; margin-bottom: 10px;">Video Platzhalter</p>
+            <p style="font-size: 1.2rem; opacity: 0.7;">Füge dein Video ein, indem du die <code>&lt;source&gt;</code> Zeile aktivierst</p>
+          </div>
+        </div>
+        
+        <!-- Video Overlay (optional) -->
+        <div class="hero-maison__overlay" id="videoOverlay"></div>
+      </div>
+
+      <!-- Hamburger Menu - Links oben -->
+      <button class="hero-maison__menu-toggle" aria-label="Menü öffnen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Top Right Text -->
+      <button type="button" class="hero-maison__top-right-text" data-heyflow-modal onclick="(function(){const m=document.querySelector('[data-heyflow-modal-container]');if(m){m.classList.add('is-open');m.style.opacity='1';m.style.visibility='visible';m.style.display='flex';m.style.pointerEvents='all';document.body.style.overflow='hidden';console.log('Modal geöffnet');}})();">
+        Sichern Sie sich Ihren exklusiven Platz
+      </button>
+
+      <!-- HeyFlow Modal -->
+      <div class="hero-maison__heyflow-modal" data-heyflow-modal-container onclick="if(event.target===this||event.target.classList.contains('hero-maison__heyflow-modal-overlay')){(function(){const m=document.querySelector('[data-heyflow-modal-container]');if(m){m.classList.remove('is-open');m.style.opacity='0';m.style.visibility='hidden';m.style.display='none';document.body.style.overflow='';}})();}">
+        <div class="hero-maison__heyflow-modal-overlay" data-heyflow-close onclick="(function(){const m=document.querySelector('[data-heyflow-modal-container]');if(m){m.classList.remove('is-open');m.style.opacity='0';m.style.visibility='hidden';m.style.display='none';document.body.style.overflow='';}})();"></div>
+        <div class="hero-maison__heyflow-modal-content">
+          <button type="button" class="hero-maison__heyflow-modal-close" data-heyflow-close aria-label="Schließen" onclick="(function(){const m=document.querySelector('[data-heyflow-modal-container]');if(m){m.classList.remove('is-open');m.style.opacity='0';m.style.visibility='hidden';m.style.display='none';document.body.style.overflow='';}})();">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+          <heyflow-wrapper flow-id="OXukvFlXlOj4Om7gpATS" dynamic-height scroll-up-on-navigation style-config='{"width":"800px"}'></heyflow-wrapper>
+        </div>
+      </div>
+
+      <!-- Brand Logo - Unten mittig -->
+      <div class="hero-maison__brand">
+        <div class="hero-maison__brand-logo-wrapper">
+          <img 
+            src="3.png" 
+            alt="MAISON Ô" 
+            class="hero-maison__brand-logo"
+            id="brandLogo"
+            onerror="this.style.display='none'; document.getElementById('brandText').style.display='block';"
+          >
+        </div>
+        <h1 class="hero-maison__brand-text" id="brandText">MAISON Ô</h1>
+      </div>
+
+      <!-- Countdown zum Go-Live -->
+      <div class="hero-maison__countdown" data-countdown>
+        <div class="hero-maison__countdown-item">
+          <span class="hero-maison__countdown-value" data-countdown-days>00</span>
+          <span class="hero-maison__countdown-label">Tage</span>
+        </div>
+        <div class="hero-maison__countdown-separator">:</div>
+        <div class="hero-maison__countdown-item">
+          <span class="hero-maison__countdown-value" data-countdown-hours>00</span>
+          <span class="hero-maison__countdown-label">Stunden</span>
+        </div>
+        <div class="hero-maison__countdown-separator">:</div>
+        <div class="hero-maison__countdown-item">
+          <span class="hero-maison__countdown-value" data-countdown-minutes>00</span>
+          <span class="hero-maison__countdown-label">Minuten</span>
+        </div>
+        <div class="hero-maison__countdown-separator">:</div>
+        <div class="hero-maison__countdown-item">
+          <span class="hero-maison__countdown-value" data-countdown-seconds>00</span>
+          <span class="hero-maison__countdown-label">Sekunden</span>
+        </div>
+      </div>
+
+
+      <!-- Bottom Right Icon - Concierge -->
+      <button type="button" class="hero-maison__concierge-icon" aria-label="Concierge" data-concierge-chat>
+        <img 
+          src="Louis.jpeg" 
+          alt="Concierge"
+          class="hero-maison__concierge-icon-image"
+        >
+      </button>
+    </section>
+
+
+    <!-- Preview Info -->
+    <div class="preview-info">
+      <h2>📹 Hero Section mit Video-Hintergrund</h2>
+      <p><strong>Zweck:</strong> Diese Sandbox zeigt den Hero-Bereich mit Video-Hintergrund und Brand-Text.</p>
+      
+      <h3 style="color: #8B0000; margin-top: 25px; margin-bottom: 10px; font-size: 1.4rem;">📹 Video einfügen:</h3>
+      <p><strong>Option 1: Lokales Video</strong></p>
+      <ul>
+        <li>Erstelle den Ordner <code>sandbox/videos/</code></li>
+        <li>Lade dein Video dort hoch (z.B. <code>hero-video.mp4</code>)</li>
+        <li>In der HTML-Datei: Entferne die Kommentare bei <code>&lt;source src="videos/hero-video.mp4"&gt;</code></li>
+      </ul>
+      
+      <p style="margin-top: 15px;"><strong>Option 2: Externe URL</strong></p>
+      <ul>
+        <li>Verwende eine direkte Video-URL (z.B. von einem CDN oder Hosting-Service)</li>
+        <li>In der HTML-Datei: Entferne die Kommentare bei <code>&lt;source src="https://..."&gt;</code></li>
+        <li>Füge deine Video-URL ein</li>
+      </ul>
+      
+      <p style="margin-top: 15px;"><strong>Option 3: Test mit Placeholder</strong></p>
+      <ul>
+        <li>Lasse den Placeholder aktiviert, um das Layout zu testen</li>
+        <li>Passe die Brand-Text Werte aus Figma an</li>
+      </ul>
+
+      <h3 style="color: #8B0000; margin-top: 25px; margin-bottom: 10px; font-size: 1.4rem;">🎨 Logo einfügen:</h3>
+      <ul>
+        <li>Lade dein Logo-Bild in den <code>sandbox/videos/</code> Ordner hoch (z.B. <code>logo.png</code> oder <code>logo.svg</code>)</li>
+        <li>Passe den Dateinamen in der HTML an: <code>&lt;img src="logo.png"&gt;</code></li>
+        <li>Das Logo wird automatisch zentriert und responsiv skaliert</li>
+        <li>Falls das Logo nicht geladen werden kann, wird automatisch der Text "MAISON Ô" angezeigt</li>
+      </ul>
+
+      <h3 style="color: #8B0000; margin-top: 25px; margin-bottom: 10px; font-size: 1.4rem;">Design anpassen:</h3>
+      <ul>
+        <li><strong>Logo Größe:</strong> Passe <code>max-width</code> in CSS an (Desktop/Tablet/Mobile)</li>
+        <li><strong>Logo Position:</strong> Passe <code>bottom</code> Wert an für vertikale Position</li>
+        <li><strong>Video Overlay:</strong> Opacity anpassen für dunkleren/helleren Effekt</li>
+        <li><strong>Höhe:</strong> <code>min-height</code> und <code>height</code> anpassen</li>
+      </ul>
+
+      <h3 style="color: #8B0000; margin-top: 25px; margin-bottom: 10px; font-size: 1.4rem;">Werte aus Figma Dev Mode:</h3>
+      <p>Trage die folgenden Werte aus Figma ein:</p>
+      <ul>
+        <li>Brand Text: Font Size, Font Weight, Letter Spacing, Color</li>
+        <li>Hero Höhe: Desktop und Mobile</li>
+        <li>Video Overlay Opacity (falls vorhanden)</li>
+      </ul>
+
+      <p style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd;">
+        <strong>Datei:</strong> <code>sandbox/hero-preview.html</code>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Video Handling
+    const video = document.getElementById('heroVideo');
+    const placeholder = document.getElementById('videoPlaceholder');
+    const overlay = document.getElementById('videoOverlay');
+    
+    // Verstecke Placeholder standardmäßig
+    if (placeholder) {
+      placeholder.style.display = 'none';
+    }
+    
+    // Zeige Video standardmäßig
+    if (video) {
+      video.style.display = 'block';
+      
+      // Verstecke Placeholder wenn Video geladen wird
+      video.addEventListener('loadeddata', function() {
+        if (placeholder) {
+          placeholder.style.display = 'none';
+        }
+        video.style.display = 'block';
+      });
+      
+      // Video Error Handling
+      video.addEventListener('error', function() {
+        console.log('Video konnte nicht geladen werden');
+        if (placeholder) {
+          placeholder.style.display = 'flex';
+        }
+        video.style.display = 'none';
+      });
+      
+      // Versuche Video zu laden
+      video.load();
+    }
+
+    // Overlay Opacity Slider (für Testing)
+    function updateOverlayOpacity(value) {
+      overlay.style.opacity = value / 100;
+    }
+
+    // Concierge Widget - Drag & Chat Handler
+    const conciergeButton = document.querySelector('[data-concierge-chat]');
+    const heroSection = document.querySelector('.hero-maison');
+    
+    if (conciergeButton && heroSection) {
+      // Funktion zum Prüfen ob Desktop-Ansicht
+      function isDesktop() {
+        return window.matchMedia('(min-width: 768px)').matches;
+      }
+      
+      // Gespeicherte Position nur auf Desktop laden
+      if (isDesktop()) {
+        const savedPosition = localStorage.getItem('concierge-widget-position');
+        if (savedPosition) {
+          try {
+            const pos = JSON.parse(savedPosition);
+            conciergeButton.style.left = pos.left;
+            conciergeButton.style.right = pos.right;
+            conciergeButton.style.top = pos.top;
+            conciergeButton.style.bottom = pos.bottom;
+          } catch (e) {
+            console.error('Fehler beim Laden der Widget-Position:', e);
+          }
+        }
+      } else {
+        // Auf Mobile: Standard-Position verwenden (wird durch CSS gesetzt)
+        // Wichtig: Alle inline-Styles entfernen, damit CSS greift
+        conciergeButton.removeAttribute('style');
+      }
+      
+      // Bei Fenstergrößenänderung prüfen
+      let resizeTimeout;
+      window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+          if (!isDesktop()) {
+            // Auf Mobile: Standard-Position verwenden
+            conciergeButton.removeAttribute('style');
+          }
+        }, 250);
+      });
+      
+      // Drag-Funktionalität
+      let isDragging = false;
+      let startX, startY, initialLeft, initialTop;
+      let hasMoved = false;
+      
+      function getPosition(element) {
+        const rect = element.getBoundingClientRect();
+        const heroRect = heroSection.getBoundingClientRect();
+        return {
+          left: rect.left - heroRect.left,
+          top: rect.top - heroRect.top,
+          right: heroRect.right - rect.right,
+          bottom: heroRect.bottom - rect.bottom
+        };
+      }
+      
+      function setPosition(element, left, top) {
+        // Nur auf Desktop Position speichern
+        if (!isDesktop()) return;
+        
+        const heroRect = heroSection.getBoundingClientRect();
+        const elementRect = element.getBoundingClientRect();
+        const maxLeft = heroRect.width - elementRect.width;
+        const maxTop = heroRect.height - elementRect.height;
+        
+        left = Math.max(0, Math.min(left, maxLeft));
+        top = Math.max(0, Math.min(top, maxTop));
+        
+        element.style.left = left + 'px';
+        element.style.top = top + 'px';
+        element.style.right = 'auto';
+        element.style.bottom = 'auto';
+        
+        // Position nur auf Desktop speichern
+        localStorage.setItem('concierge-widget-position', JSON.stringify({
+          left: left + 'px',
+          top: top + 'px',
+          right: 'auto',
+          bottom: 'auto'
+        }));
+      }
+      
+      // Maus-Events (nur auf Desktop)
+      conciergeButton.addEventListener('mousedown', function(e) {
+        if (e.button !== 0 || !isDesktop()) return; // Nur linke Maustaste und nur auf Desktop
+        isDragging = true;
+        hasMoved = false;
+        startX = e.clientX;
+        startY = e.clientY;
+        
+        const pos = getPosition(conciergeButton);
+        initialLeft = pos.left;
+        initialTop = pos.top;
+        
+        conciergeButton.style.cursor = 'grabbing';
+        conciergeButton.style.transition = 'none';
+        e.preventDefault();
+      });
+      
+      document.addEventListener('mousemove', function(e) {
+        if (!isDragging) return;
+        
+        const deltaX = e.clientX - startX;
+        const deltaY = e.clientY - startY;
+        
+        if (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5) {
+          hasMoved = true;
+        }
+        
+        const heroRect = heroSection.getBoundingClientRect();
+        const newLeft = initialLeft + deltaX;
+        const newTop = initialTop + deltaY;
+        
+        setPosition(conciergeButton, newLeft, newTop);
+      });
+      
+      document.addEventListener('mouseup', function(e) {
+        if (!isDragging) return;
+        
+        isDragging = false;
+        conciergeButton.style.cursor = 'grab';
+        conciergeButton.style.transition = 'all 0.3s ease';
+        
+        // Nur Chat öffnen, wenn nicht verschoben wurde
+        if (!hasMoved) {
+          e.preventDefault();
+          
+          // Shopify Chat öffnen
+          const welcomeMessage = "Bienvenue a la Maison Ô, treten Sie ein in unsere Maison, wo Luxus, Raffinesse und Mode à la française auf Sie warten – in das univers raffiné, in dem jede Kollektion ihre eigene Geschichte trägt.";
+          
+          if (typeof Shopify !== 'undefined' && Shopify.chat) {
+            Shopify.chat.open();
+            // Nachricht nach kurzer Verzögerung senden, damit der Chat geöffnet ist
+            setTimeout(function() {
+              if (Shopify.chat && Shopify.chat.sendMessage) {
+                Shopify.chat.sendMessage(welcomeMessage);
+              } else {
+                // Alternative: Nachricht über Input-Feld senden
+                const chatInput = document.querySelector('[data-chat-input]') || 
+                                 document.querySelector('.chat-input') ||
+                                 document.querySelector('input[type="text"][placeholder*="chat" i]');
+                if (chatInput) {
+                  chatInput.value = welcomeMessage;
+                  const sendButton = chatInput.closest('form')?.querySelector('button[type="submit"]') ||
+                                   chatInput.nextElementSibling;
+                  if (sendButton) {
+                    sendButton.click();
+                  }
+                }
+              }
+            }, 500);
+          } else if (window.Shopify && window.Shopify.chat) {
+            window.Shopify.chat.open();
+            setTimeout(function() {
+              if (window.Shopify.chat && window.Shopify.chat.sendMessage) {
+                window.Shopify.chat.sendMessage(welcomeMessage);
+              }
+            }, 500);
+          } else {
+            // Fallback: Nach Shopify Chat Widget suchen und öffnen
+            const chatWidget = document.querySelector('[data-shopify-chat]') || 
+                              document.querySelector('.shopify-chat') ||
+                              document.querySelector('#chat-widget');
+            
+            if (chatWidget) {
+              chatWidget.click();
+              setTimeout(function() {
+                const chatInput = document.querySelector('[data-chat-input]') || 
+                                 document.querySelector('.chat-input') ||
+                                 document.querySelector('input[type="text"][placeholder*="chat" i]');
+                if (chatInput) {
+                  chatInput.value = welcomeMessage;
+                  const sendButton = chatInput.closest('form')?.querySelector('button[type="submit"]') ||
+                                   chatInput.nextElementSibling;
+                  if (sendButton) {
+                    sendButton.click();
+                  }
+                }
+              }, 500);
+            } else {
+              // Alternative: Chat-Bubble suchen und klicken
+              const chatBubble = document.querySelector('[data-chat-bubble]') ||
+                                document.querySelector('.chat-bubble') ||
+                                document.querySelector('[aria-label*="chat" i]');
+              
+              if (chatBubble) {
+                chatBubble.click();
+                setTimeout(function() {
+                  const chatInput = document.querySelector('[data-chat-input]') || 
+                                   document.querySelector('.chat-input') ||
+                                   document.querySelector('input[type="text"][placeholder*="chat" i]');
+                  if (chatInput) {
+                    chatInput.value = welcomeMessage;
+                    const sendButton = chatInput.closest('form')?.querySelector('button[type="submit"]') ||
+                                     chatInput.nextElementSibling;
+                    if (sendButton) {
+                      sendButton.click();
+                    }
+                  }
+                }, 500);
+              } else {
+                // Demo: Alert für Sandbox mit Begrüßungsnachricht
+                alert('Shopify Chat würde hier geöffnet werden.\n\nBegrüßungsnachricht:\n"' + welcomeMessage + '"\n\nIn der Live-Version öffnet sich das Chat-Fenster mit Louis, dem Concierge von Maison Ô.');
+              }
+            }
+          }
+        }
+      });
+      
+      // Touch-Events für mobile Geräte
+      conciergeButton.addEventListener('touchstart', function(e) {
+        isDragging = true;
+        hasMoved = false;
+        const touch = e.touches[0];
+        startX = touch.clientX;
+        startY = touch.clientY;
+        
+        const pos = getPosition(conciergeButton);
+        initialLeft = pos.left;
+        initialTop = pos.top;
+        
+        conciergeButton.style.transition = 'none';
+        e.preventDefault();
+      }, { passive: false });
+      
+      document.addEventListener('touchmove', function(e) {
+        if (!isDragging) return;
+        
+        const touch = e.touches[0];
+        const deltaX = touch.clientX - startX;
+        const deltaY = touch.clientY - startY;
+        
+        if (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5) {
+          hasMoved = true;
+        }
+        
+        const heroRect = heroSection.getBoundingClientRect();
+        const newLeft = initialLeft + deltaX;
+        const newTop = initialTop + deltaY;
+        
+        setPosition(conciergeButton, newLeft, newTop);
+        e.preventDefault();
+      }, { passive: false });
+      
+      document.addEventListener('touchend', function(e) {
+        if (!isDragging) return;
+        
+        isDragging = false;
+        conciergeButton.style.transition = 'all 0.3s ease';
+        
+        // Nur Chat öffnen, wenn nicht verschoben wurde
+        if (!hasMoved) {
+          e.preventDefault();
+          
+          // Shopify Chat öffnen
+          const welcomeMessage = "Bienvenue a la Maison Ô, treten Sie ein in unsere Maison, wo Luxus, Raffinesse und Mode à la française auf Sie warten – in das univers raffiné, in dem jede Kollektion ihre eigene Geschichte trägt.";
+          
+          if (typeof Shopify !== 'undefined' && Shopify.chat) {
+            Shopify.chat.open();
+            // Nachricht nach kurzer Verzögerung senden, damit der Chat geöffnet ist
+            setTimeout(function() {
+              if (Shopify.chat && Shopify.chat.sendMessage) {
+                Shopify.chat.sendMessage(welcomeMessage);
+              } else {
+                // Alternative: Nachricht über Input-Feld senden
+                const chatInput = document.querySelector('[data-chat-input]') || 
+                                 document.querySelector('.chat-input') ||
+                                 document.querySelector('input[type="text"][placeholder*="chat" i]');
+                if (chatInput) {
+                  chatInput.value = welcomeMessage;
+                  const sendButton = chatInput.closest('form')?.querySelector('button[type="submit"]') ||
+                                   chatInput.nextElementSibling;
+                  if (sendButton) {
+                    sendButton.click();
+                  }
+                }
+              }
+            }, 500);
+          } else if (window.Shopify && window.Shopify.chat) {
+            window.Shopify.chat.open();
+            setTimeout(function() {
+              if (window.Shopify.chat && window.Shopify.chat.sendMessage) {
+                window.Shopify.chat.sendMessage(welcomeMessage);
+              }
+            }, 500);
+          } else {
+            // Fallback: Nach Shopify Chat Widget suchen und öffnen
+            const chatWidget = document.querySelector('[data-shopify-chat]') || 
+                              document.querySelector('.shopify-chat') ||
+                              document.querySelector('#chat-widget');
+            
+            if (chatWidget) {
+              chatWidget.click();
+              setTimeout(function() {
+                const chatInput = document.querySelector('[data-chat-input]') || 
+                                 document.querySelector('.chat-input') ||
+                                 document.querySelector('input[type="text"][placeholder*="chat" i]');
+                if (chatInput) {
+                  chatInput.value = welcomeMessage;
+                  const sendButton = chatInput.closest('form')?.querySelector('button[type="submit"]') ||
+                                   chatInput.nextElementSibling;
+                  if (sendButton) {
+                    sendButton.click();
+                  }
+                }
+              }, 500);
+            } else {
+              // Alternative: Chat-Bubble suchen und klicken
+              const chatBubble = document.querySelector('[data-chat-bubble]') ||
+                                document.querySelector('.chat-bubble') ||
+                                document.querySelector('[aria-label*="chat" i]');
+              
+              if (chatBubble) {
+                chatBubble.click();
+                setTimeout(function() {
+                  const chatInput = document.querySelector('[data-chat-input]') || 
+                                   document.querySelector('.chat-input') ||
+                                   document.querySelector('input[type="text"][placeholder*="chat" i]');
+                  if (chatInput) {
+                    chatInput.value = welcomeMessage;
+                    const sendButton = chatInput.closest('form')?.querySelector('button[type="submit"]') ||
+                                     chatInput.nextElementSibling;
+                    if (sendButton) {
+                      sendButton.click();
+                    }
+                  }
+                }, 500);
+              } else {
+                // Demo: Alert für Sandbox mit Begrüßungsnachricht
+                alert('Shopify Chat würde hier geöffnet werden.\n\nBegrüßungsnachricht:\n"' + welcomeMessage + '"\n\nIn der Live-Version öffnet sich das Chat-Fenster mit Louis, dem Concierge von Maison Ô.');
+              }
+            }
+          }
+        }
+      });
+    }
+  </script>
+  <script>
+    // Hero-Section nicht mehr sticky, wenn Footer erreicht wird
+    (function() {
+      const heroSection = document.querySelector('.hero-maison');
+      const footer = document.querySelector('footer');
+      
+      if (!heroSection || !footer) return;
+      
+      function checkFooterPosition() {
+        const footerRect = footer.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        
+        // Wenn Footer im Viewport sichtbar ist, Hero-Section nicht mehr sticky machen
+        if (footerRect.top < viewportHeight) {
+          heroSection.style.position = 'relative';
+        } else {
+          heroSection.style.position = 'sticky';
+        }
+      }
+      
+      // Initial check
+      checkFooterPosition();
+      
+      // Bei Scroll prüfen
+      window.addEventListener('scroll', checkFooterPosition, { passive: true });
+      window.addEventListener('resize', checkFooterPosition);
+      
+      // Intersection Observer für präzisere Erkennung
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            // Footer ist sichtbar - Hero nicht mehr sticky
+            heroSection.style.position = 'relative';
+          } else {
+            // Footer ist nicht sichtbar - Hero wieder sticky
+            if (entry.boundingClientRect.top > window.innerHeight) {
+              heroSection.style.position = 'sticky';
+            }
+          }
+        });
+      }, {
+        threshold: [0, 0.1, 0.5, 1],
+        rootMargin: '0px'
+      });
+      
+      observer.observe(footer);
+    })();
+  </script>
+
+  <!-- Footer -->
+  <footer style="background-color: #340000; color: #ffffff; padding-top: 0; padding-bottom: 32px; padding-left: 0; padding-right: 0; margin-top: 0; position: relative; z-index: 20; width: 100%;">
+    <div style="width: 100%; max-width: none; margin: 0; display: flex; justify-content: flex-start; align-items: flex-start; flex-wrap: nowrap; gap: 30px; padding-left: 54px; padding-right: 0; padding-top: 20px;">
+      <nav style="flex: 0 0 auto; min-width: 0; display: flex; justify-content: flex-start; align-items: flex-start;" class="footer__nav">
+        <button type="button" class="footer__menu-toggle" aria-label="Menü öffnen/schließen" aria-expanded="false">
+          <span class="footer__menu-toggle-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </span>
+        </button>
+        <ul class="footer__menu" style="display: flex; list-style: none; margin: 0; padding: 0; padding-left: 0; justify-content: flex-start; align-items: flex-start; flex-wrap: wrap; gap: 30px;">
+          <li style="margin: 0;">
+            <a href="/pages/impressum" style="font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 400; line-height: 1.5; color: #ffffff; text-decoration: none; transition: opacity 0.3s ease; display: inline-block;">Impressum</a>
+          </li>
+          <li style="margin: 0;">
+            <a href="/pages/datenschutz" style="font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 400; line-height: 1.5; color: #ffffff; text-decoration: none; transition: opacity 0.3s ease; display: inline-block;">Datenschutz</a>
+          </li>
+        </ul>
+      </nav>
+      
+      <div style="display: flex; align-items: center; justify-content: flex-end; gap: 15px; flex: 0 0 auto; margin-left: auto; padding-right: 30px;">
+        <a href="#" style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; color: #ffffff; text-decoration: none; transition: opacity 0.3s ease;" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.386 1.262.617 1.694.789.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+        </a>
+        <a href="#" style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; color: #ffffff; text-decoration: none; transition: opacity 0.3s ease;" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    footer a:hover {
+      opacity: 0.7;
+      text-decoration: underline;
+    }
+
+    footer div[style*="display: flex; align-items: center"] a:hover {
+      text-decoration: none;
+    }
+
+    .footer__menu-toggle {
+      display: none;
+    }
+
+    .footer__menu {
+      display: flex !important;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    @media (max-width: 767px) {
+      .footer__menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: auto;
+        padding: 12px 0;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 0;
+        color: #ffffff;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .footer__menu-toggle:hover {
+        opacity: 0.8;
+      }
+
+      .footer__menu-toggle-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease;
+      }
+
+      .footer__menu-toggle-icon svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .footer__menu-toggle[aria-expanded="true"] .footer__menu-toggle-icon {
+        transform: rotate(90deg);
+      }
+
+      .footer__nav {
+        width: 100%;
+        position: relative;
+        flex-direction: column;
+      }
+
+      footer div[style*="max-width: 1200px"] {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+
+      .footer__menu-toggle {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .footer__menu {
+        display: none !important;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 15px;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, padding-top 0.3s ease, padding-bottom 0.3s ease;
+        position: relative;
+        background-color: transparent;
+        z-index: 10;
+        margin-top: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .footer__menu.is-open {
+        display: flex !important;
+        max-height: 1000px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+
+      .footer__menu li a {
+        font-size: 0.6rem !important;
+      }
+    }
+
+    @media (max-width: 1023px) {
+      footer div[style*="max-width: 1200px"] {
+        flex-wrap: wrap !important;
+      }
+    }
+
+    @media (max-width: 767px) {
+      footer {
+        padding-top: 20px !important;
+        padding-bottom: 20px !important;
+      }
+      footer div[style*="max-width: 1200px"] {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 20px !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        flex-wrap: wrap !important;
+      }
+      footer nav {
+        width: 100% !important;
+      }
+      footer div[style*="display: flex; align-items: center"] {
+        padding-right: 20px !important;
+      }
+      footer ul {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 20px !important;
+        padding-left: 44px !important;
+      }
+      footer a {
+        font-size: 0.6rem !important;
+      }
+      footer div[style*="display: flex; align-items: center"] {
+        align-self: flex-end !important;
+      }
+    }
+  </style>
+
+  <script>
+    (function() {
+      const menuToggle = document.querySelector('.footer__menu-toggle');
+      const footerMenu = document.querySelector('.footer__menu');
+      
+      if (!menuToggle || !footerMenu) return;
+      
+      menuToggle.addEventListener('click', function() {
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        
+        if (isExpanded) {
+          menuToggle.setAttribute('aria-expanded', 'false');
+          footerMenu.classList.remove('is-open');
+        } else {
+          menuToggle.setAttribute('aria-expanded', 'true');
+          footerMenu.classList.add('is-open');
+        }
+      });
+    })();
+
+    // Countdown zum Go-Live
+    (function() {
+      const countdownElement = document.querySelector('[data-countdown]');
+      if (!countdownElement) return;
+
+      // Ziel-Datum: 15. Januar 2026, 00:00:00 Uhr
+      const targetDate = new Date('2026-01-15T00:00:00').getTime();
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) {
+          // Countdown abgelaufen
+          countdownElement.innerHTML = '<div class="hero-maison__countdown-item"><span class="hero-maison__countdown-value">Go-Live!</span></div>';
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        const daysElement = countdownElement.querySelector('[data-countdown-days]');
+        const hoursElement = countdownElement.querySelector('[data-countdown-hours]');
+        const minutesElement = countdownElement.querySelector('[data-countdown-minutes]');
+        const secondsElement = countdownElement.querySelector('[data-countdown-seconds]');
+
+        if (daysElement) daysElement.textContent = String(days).padStart(2, '0');
+        if (hoursElement) hoursElement.textContent = String(hours).padStart(2, '0');
+        if (minutesElement) minutesElement.textContent = String(minutes).padStart(2, '0');
+        if (secondsElement) secondsElement.textContent = String(seconds).padStart(2, '0');
+      }
+
+      // Sofort aktualisieren
+      updateCountdown();
+
+      // Dann jede Sekunde aktualisieren
+      setInterval(updateCountdown, 1000);
+    })();
+
+    // HeyFlow Modal - Warte bis DOM geladen ist
+    function initHeyFlowModal() {
+      const heyflowButton = document.querySelector('[data-heyflow-modal]');
+      const heyflowModal = document.querySelector('[data-heyflow-modal-container]');
+      const closeButtons = document.querySelectorAll('[data-heyflow-close]');
+      
+      if (!heyflowButton || !heyflowModal) {
+        console.error('HeyFlow Modal: Button oder Modal nicht gefunden!', {
+          button: heyflowButton,
+          modal: heyflowModal
+        });
+        return;
+      }
+      
+      // Debug: Prüfe Button
+      console.log('Button gefunden:', {
+        element: heyflowButton,
+        tagName: heyflowButton.tagName,
+        className: heyflowButton.className,
+        zIndex: window.getComputedStyle(heyflowButton).zIndex,
+        pointerEvents: window.getComputedStyle(heyflowButton).pointerEvents,
+        position: heyflowButton.getBoundingClientRect()
+      });
+      
+      // Modal öffnen
+      function openModal(e) {
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+        }
+        console.log('Öffne Modal...');
+        heyflowModal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        // Force styles um sicherzustellen, dass Modal sichtbar ist
+        heyflowModal.style.opacity = '1';
+        heyflowModal.style.visibility = 'visible';
+        heyflowModal.style.display = 'flex';
+        heyflowModal.style.pointerEvents = 'all';
+      }
+      
+      // Click Handler - mit mehreren Methoden
+      function handleClick(e) {
+        console.log('BUTTON GEKLICKT!', e);
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        openModal(e);
+        return false;
+      }
+      
+      // Event Listener hinzufügen
+      heyflowButton.addEventListener('click', handleClick, true); // Capture phase
+      heyflowButton.addEventListener('click', handleClick, false); // Bubble phase
+      
+      // Auch als onclick direkt setzen
+      heyflowButton.onclick = handleClick;
+      
+      // Mousedown als Backup
+      heyflowButton.addEventListener('mousedown', function(e) {
+        console.log('MOUSEDOWN auf Button!');
+        e.preventDefault();
+        handleClick(e);
+      }, true);
+      
+      // Test-Funktion für Debugging
+      window.testModal = function() {
+        console.log('=== TEST MODAL ===');
+        console.log('Modal Element:', heyflowModal);
+        console.log('Button Element:', heyflowButton);
+        console.log('Modal hat is-open Klasse?', heyflowModal.classList.contains('is-open'));
+        
+        heyflowModal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        
+        // Force styles
+        heyflowModal.style.opacity = '1';
+        heyflowModal.style.visibility = 'visible';
+        heyflowModal.style.display = 'flex';
+        heyflowModal.style.pointerEvents = 'all';
+        
+        const styles = window.getComputedStyle(heyflowModal);
+        console.log('Modal Styles nach Öffnen:', {
+          visibility: styles.visibility,
+          opacity: styles.opacity,
+          display: styles.display,
+          zIndex: styles.zIndex,
+          pointerEvents: styles.pointerEvents
+        });
+        console.log('Modal Klassen:', heyflowModal.className);
+      };
+      
+      console.log('HeyFlow Modal initialisiert');
+      
+      // Modal schließen
+      closeButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          heyflowModal.classList.remove('is-open');
+          document.body.style.overflow = '';
+        });
+      });
+      
+      // Modal schließen bei Klick auf Overlay
+      const overlay = heyflowModal.querySelector('.hero-maison__heyflow-modal-overlay');
+      if (overlay) {
+        overlay.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          heyflowModal.classList.remove('is-open');
+          document.body.style.overflow = '';
+        });
+      }
+      
+      // Modal schließen bei ESC-Taste
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && heyflowModal.classList.contains('is-open')) {
+          heyflowModal.classList.remove('is-open');
+          document.body.style.overflow = '';
+        }
+      });
+      
+    }
+    
+    // Mehrfach versuchen zu initialisieren
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initHeyFlowModal);
+    } else {
+      initHeyFlowModal();
+    }
+    
+    // Auch nach kurzer Verzögerung nochmal versuchen
+    setTimeout(initHeyFlowModal, 100);
+    setTimeout(initHeyFlowModal, 500);
+  </script>
+</body>
+</html>
+
