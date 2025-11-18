@@ -1155,11 +1155,9 @@
           // WhatsApp Business Konfiguration
           // Format: +491234567890 (mit Ländercode, ohne Leerzeichen oder Bindestriche)
           const whatsappPhoneNumber = '+4915147846932';
-          const welcomeMessage = "Bienvenue a la Maison Ô, treten Sie ein in unsere Maison, wo Luxus, Raffinesse und Mode à la française auf Sie warten – in das univers raffiné, in dem jede Kollektion ihre eigene Geschichte trägt.";
           
-          // WhatsApp Link erstellen
-          const encodedMessage = encodeURIComponent(welcomeMessage);
-          const whatsappUrl = `https://wa.me/${whatsappPhoneNumber.replace(/[^0-9+]/g, '')}?text=${encodedMessage}`;
+          // WhatsApp Link erstellen (ohne automatische Nachricht)
+          const whatsappUrl = `https://wa.me/${whatsappPhoneNumber.replace(/[^0-9+]/g, '')}`;
           
           // WhatsApp öffnen
           window.open(whatsappUrl, '_blank');
@@ -1217,11 +1215,9 @@
           // WhatsApp Business Konfiguration
           // Format: +491234567890 (mit Ländercode, ohne Leerzeichen oder Bindestriche)
           const whatsappPhoneNumber = '+4915147846932';
-          const welcomeMessage = "Bienvenue a la Maison Ô, treten Sie ein in unsere Maison, wo Luxus, Raffinesse und Mode à la française auf Sie warten – in das univers raffiné, in dem jede Kollektion ihre eigene Geschichte trägt.";
           
-          // WhatsApp Link erstellen
-          const encodedMessage = encodeURIComponent(welcomeMessage);
-          const whatsappUrl = `https://wa.me/${whatsappPhoneNumber.replace(/[^0-9+]/g, '')}?text=${encodedMessage}`;
+          // WhatsApp Link erstellen (ohne automatische Nachricht)
+          const whatsappUrl = `https://wa.me/${whatsappPhoneNumber.replace(/[^0-9+]/g, '')}`;
           
           // WhatsApp öffnen
           window.open(whatsappUrl, '_blank');
