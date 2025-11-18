@@ -457,9 +457,8 @@
 
     .hero-maison__concierge-icon {
       position: fixed;
-      bottom: 30px;
       right: 30px;
-      z-index: 2;
+      z-index: 1000;
       width: 100px;
       height: 100px;
       display: flex;
@@ -478,6 +477,8 @@
       box-shadow: 0 4px 12px rgba(52, 0, 0, 0.5);
       animation: concierge-pulse 3s ease-in-out infinite;
       padding: 0;
+      visibility: visible;
+      opacity: 1;
     }
 
     .hero-maison__concierge-icon::after {
@@ -1017,11 +1018,29 @@
     // Concierge Widget - Drag & Chat Handler
     const conciergeButton = document.querySelector('[data-concierge-chat]');
     const heroSection = document.querySelector('.hero-maison');
+    const brandLogo = document.querySelector('.hero-maison__brand');
     
     if (conciergeButton && heroSection) {
       // Funktion zum Prüfen ob Desktop-Ansicht
       function isDesktop() {
         return window.matchMedia('(min-width: 768px)').matches;
+      }
+      
+      // Funktion zum Positionieren des Widgets auf Logo-Höhe
+      function positionWidgetAtLogoHeight() {
+        if (!brandLogo) return;
+        
+        const logoRect = brandLogo.getBoundingClientRect();
+        const widgetHeight = conciergeButton.offsetHeight || 100;
+        const widgetTop = logoRect.top + (logoRect.height / 2) - (widgetHeight / 2);
+        
+        // Immer rechts am Rand fixieren
+        conciergeButton.style.right = '30px';
+        conciergeButton.style.left = 'auto';
+        conciergeButton.style.top = widgetTop + 'px';
+        conciergeButton.style.bottom = 'auto';
+        conciergeButton.style.visibility = 'visible';
+        conciergeButton.style.opacity = '1';
       }
       
       // Gespeicherte Position nur auf Desktop laden
@@ -1035,33 +1054,43 @@
             conciergeButton.style.left = 'auto';
             conciergeButton.style.top = pos.top;
             conciergeButton.style.bottom = 'auto';
+            conciergeButton.style.visibility = 'visible';
+            conciergeButton.style.opacity = '1';
           } catch (e) {
             console.error('Fehler beim Laden der Widget-Position:', e);
+            // Fallback: Auf Logo-Höhe positionieren
+            positionWidgetAtLogoHeight();
           }
         } else {
-          // Standard-Position: rechts, unten
-          conciergeButton.style.right = '30px';
-          conciergeButton.style.left = 'auto';
-          conciergeButton.style.bottom = '30px';
-          conciergeButton.style.top = 'auto';
+          // Standard-Position: Auf Logo-Höhe
+          positionWidgetAtLogoHeight();
         }
       } else {
-        // Auf Mobile: Standard-Position verwenden (wird durch CSS gesetzt)
-        // Wichtig: Alle inline-Styles entfernen, damit CSS greift
-        conciergeButton.removeAttribute('style');
+        // Auf Mobile: Auf Logo-Höhe positionieren
+        positionWidgetAtLogoHeight();
       }
       
-      // Bei Fenstergrößenänderung prüfen
+      // Bei Resize neu positionieren
       let resizeTimeout;
       window.addEventListener('resize', function() {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(function() {
           if (!isDesktop()) {
-            // Auf Mobile: Standard-Position verwenden
-            conciergeButton.removeAttribute('style');
+            positionWidgetAtLogoHeight();
+          } else {
+            // Auf Desktop: Gespeicherte Position verwenden oder Logo-Höhe
+            const savedPosition = localStorage.getItem('concierge-widget-position');
+            if (!savedPosition) {
+              positionWidgetAtLogoHeight();
+            }
           }
         }, 250);
       });
+      
+      // Bei Scroll neu positionieren (falls Logo sich bewegt)
+      window.addEventListener('scroll', function() {
+        positionWidgetAtLogoHeight();
+      }, { passive: true });
       
       // Drag-Funktionalität
       let isDragging = false;
