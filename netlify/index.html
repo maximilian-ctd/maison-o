@@ -1094,7 +1094,8 @@
         
         const logoRect = brandLogo.getBoundingClientRect();
         const widgetHeight = conciergeButton.offsetHeight || 100;
-        const widgetTop = logoRect.top + (logoRect.height / 2) - (widgetHeight / 2);
+        const offsetUp = 80; // Widget weiter nach oben verschieben
+        const widgetTop = logoRect.top + (logoRect.height / 2) - (widgetHeight / 2) - offsetUp;
         
         // Immer rechts am Rand fixieren
         conciergeButton.style.right = '30px';
