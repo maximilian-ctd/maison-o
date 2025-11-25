@@ -245,9 +245,9 @@
       background: #ffffff;
       padding: 0;
       border-radius: 8px;
-      max-width: 800px;
-      width: 90%;
-      max-height: 90vh;
+      max-width: 550px;
+      width: auto;
+      max-height: 85vh;
       overflow-y: auto;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
       transform: scale(0.9);
@@ -257,15 +257,31 @@
 
     @media (max-width: 767px) {
       .hero-maison__heyflow-modal-content {
-        max-width: 95%;
-        width: 95%;
+        max-width: 85%;
+        width: auto;
+        max-height: 90vh;
+      }
+      
+      .hero-maison__heyflow-modal-content heyflow-wrapper,
+      .hero-maison__heyflow-modal-content .heyflow-form-wrapper,
+      .hero-maison__heyflow-modal-content iframe {
+        transform: scale(0.75);
+        transform-origin: top center;
       }
     }
 
     @media (max-width: 480px) {
       .hero-maison__heyflow-modal-content {
-        max-width: 100%;
-        width: 100%;
+        max-width: 90%;
+        width: auto;
+        max-height: 95vh;
+      }
+      
+      .hero-maison__heyflow-modal-content heyflow-wrapper,
+      .hero-maison__heyflow-modal-content .heyflow-form-wrapper,
+      .hero-maison__heyflow-modal-content iframe {
+        transform: scale(0.7);
+        transform-origin: top center;
       }
     }
 
@@ -308,12 +324,21 @@
       display: block;
       width: 100%;
       min-height: 400px;
+      transform: scale(0.85);
+      transform-origin: top center;
+      margin: 0;
+      padding: 0;
     }
 
     /* HeyFlow iframe responsive */
     .hero-maison__heyflow-modal-content iframe {
       max-width: 100% !important;
       width: 100% !important;
+      transform: scale(0.85);
+      transform-origin: top center;
+      margin: 0;
+      padding: 0;
+      border: none;
     }
 
     @media (max-width: 767px) {
@@ -340,12 +365,19 @@
       }
 
       .hero-maison__heyflow-modal-content {
-        max-width: 95%;
-        width: 95%;
-        max-height: 95vh;
+        max-width: 85%;
+        width: auto;
+        max-height: 90vh;
         border-radius: 8px;
         margin: 0;
         transform: scale(1);
+      }
+      
+      .hero-maison__heyflow-modal-content heyflow-wrapper,
+      .hero-maison__heyflow-modal-content .heyflow-form-wrapper,
+      .hero-maison__heyflow-modal-content iframe {
+        transform: scale(0.75);
+        transform-origin: top center;
       }
 
       .hero-maison__heyflow-modal-close {
@@ -369,11 +401,18 @@
       }
 
       .hero-maison__heyflow-modal-content {
-        max-width: 100%;
-        width: 100%;
-        max-height: 98vh;
+        max-width: 90%;
+        width: auto;
+        max-height: 95vh;
         border-radius: 8px;
         height: auto;
+      }
+      
+      .hero-maison__heyflow-modal-content heyflow-wrapper,
+      .hero-maison__heyflow-modal-content .heyflow-form-wrapper,
+      .hero-maison__heyflow-modal-content iframe {
+        transform: scale(0.7);
+        transform-origin: top center;
       }
 
       .hero-maison__heyflow-modal-close {
@@ -958,7 +997,7 @@
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
           </button>
-          <heyflow-wrapper flow-id="OXukvFlXlOj4Om7gpATS" dynamic-height scroll-up-on-navigation style-config='{"width":"800px"}' class="heyflow-form-wrapper"></heyflow-wrapper>
+          <heyflow-wrapper flow-id="OXukvFlXlOj4Om7gpATS" dynamic-height scroll-up-on-navigation style-config='{"width":"500px"}' class="heyflow-form-wrapper"></heyflow-wrapper>
         </div>
       </div>
 
