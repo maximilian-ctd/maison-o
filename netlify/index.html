@@ -587,6 +587,71 @@
       transform: scale(1.15);
     }
 
+    /* Sprechblase für Widget */
+    .hero-maison__concierge-bubble {
+      position: fixed;
+      right: 130px;
+      z-index: 1001;
+      background: #ffffff;
+      color: #340000;
+      padding: 18px 22px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      line-height: 1.6;
+      max-width: 320px;
+      min-width: 280px;
+      width: auto;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease;
+      pointer-events: none;
+      white-space: normal;
+      transform: translateY(-50%);
+      text-align: left;
+    }
+
+    .hero-maison__concierge-bubble::after {
+      content: '';
+      position: absolute;
+      right: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 8px 0 8px 8px;
+      border-color: transparent transparent transparent #ffffff;
+    }
+
+    .hero-maison__concierge-bubble.is-visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(-50%) translateX(-10px);
+    }
+
+    @media (max-width: 768px) {
+      .hero-maison__concierge-bubble {
+        right: 120px;
+        max-width: 280px;
+        min-width: 240px;
+        font-size: 0.85rem;
+        padding: 15px 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-maison__concierge-bubble {
+        right: 110px;
+        max-width: 240px;
+        min-width: 200px;
+        font-size: 0.8rem;
+        padding: 12px 15px;
+      }
+    }
+
 
 
     /* Placeholder für Video */
@@ -1023,6 +1088,12 @@
           class="hero-maison__concierge-icon-image"
         >
       </button>
+      <div class="hero-maison__concierge-bubble" data-concierge-bubble>
+        Bienvenue à la Maison Ô.<br><br>
+        Ich bin Louis, Ihr Concierge.<br><br>
+        Unsere Tore öffnen sich am 1. Februar – sichern Sie sich jetzt einen der begehrten Plätze.<br><br>
+        Bis dahin stehe ich Ihnen jederzeit zur Verfügung.
+      </div>
     </section>
   </div>
 
@@ -1094,7 +1165,7 @@
         
         const logoRect = brandLogo.getBoundingClientRect();
         const widgetHeight = conciergeButton.offsetHeight || 100;
-        const offsetUp = 80; // Widget weiter nach oben verschieben
+        const offsetUp = 120; // Widget weiter nach oben verschieben
         const widgetTop = logoRect.top + (logoRect.height / 2) - (widgetHeight / 2) - offsetUp;
         
         // Immer rechts am Rand fixieren
@@ -1104,6 +1175,11 @@
         conciergeButton.style.bottom = 'auto';
         conciergeButton.style.visibility = 'visible';
         conciergeButton.style.opacity = '1';
+        
+        // Aktualisiere Sprechblase-Position
+        if (window.updateBubblePosition) {
+          window.updateBubblePosition();
+        }
       }
       
       // Gespeicherte Position nur auf Desktop laden
@@ -1169,6 +1245,56 @@
         });
       }
       
+      // Sprechblase nach 3 Sekunden anzeigen
+      const conciergeBubble = document.querySelector('[data-concierge-bubble]');
+      
+      if (conciergeBubble) {
+        // Positioniere die Sprechblase auf der Höhe des Widgets
+        function updateBubblePosition() {
+          if (conciergeButton && conciergeBubble) {
+            const buttonRect = conciergeButton.getBoundingClientRect();
+            const bubbleTop = buttonRect.top + (buttonRect.height / 2);
+            conciergeBubble.style.top = bubbleTop + 'px';
+            conciergeBubble.style.transform = 'translateY(-50%)';
+          }
+        }
+        
+        // Schließe Sprechblase
+        function closeBubble() {
+          if (conciergeBubble) {
+            conciergeBubble.classList.remove('is-visible');
+          }
+        }
+        
+        // Zeige Sprechblase nach 3 Sekunden
+        setTimeout(function() {
+          if (conciergeBubble && conciergeButton) {
+            updateBubblePosition();
+            // Warte kurz, damit Position gesetzt ist, bevor Animation startet
+            setTimeout(function() {
+              conciergeBubble.classList.add('is-visible');
+            }, 50);
+          }
+        }, 3000);
+        
+        // Aktualisiere Position bei Scroll und Resize
+        window.addEventListener('scroll', function() {
+          updateBubblePosition();
+        }, { passive: true });
+        
+        window.addEventListener('resize', function() {
+          updateBubblePosition();
+        });
+        
+        // Verstecke Sprechblase beim Klick auf Widget
+        conciergeButton.addEventListener('click', function() {
+          closeBubble();
+        });
+        
+        // Exportiere updateBubblePosition für Drag-Funktionalität
+        window.updateBubblePosition = updateBubblePosition;
+      }
+      
       // Drag-Funktionalität
       let isDragging = false;
       let startY, initialTop;
@@ -1208,6 +1334,11 @@
           top: top + 'px',
           right: '30px'
         }));
+        
+        // Aktualisiere Sprechblase-Position
+        if (window.updateBubblePosition) {
+          window.updateBubblePosition();
+        }
       }
       
       // Maus-Events (nur auf Desktop)
