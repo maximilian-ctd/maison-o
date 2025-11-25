@@ -607,10 +607,11 @@
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease;
-      pointer-events: none;
+      pointer-events: auto;
       white-space: normal;
       transform: translateY(-50%);
       text-align: left;
+      cursor: pointer;
     }
 
     .hero-maison__concierge-bubble::after {
@@ -1165,7 +1166,7 @@
         
         const logoRect = brandLogo.getBoundingClientRect();
         const widgetHeight = conciergeButton.offsetHeight || 100;
-        const offsetUp = 120; // Widget weiter nach oben verschieben
+        const offsetUp = 160; // Widget weiter nach oben verschieben
         const widgetTop = logoRect.top + (logoRect.height / 2) - (widgetHeight / 2) - offsetUp;
         
         // Immer rechts am Rand fixieren
@@ -1271,14 +1272,14 @@
           }
         }
         
-        // Starte Auto-Close Timer (60 Sekunden = 1 Minute)
+        // Starte Auto-Close Timer (40 Sekunden)
         function startAutoCloseTimer() {
           if (bubbleAutoCloseTimer) {
             clearTimeout(bubbleAutoCloseTimer);
           }
           bubbleAutoCloseTimer = setTimeout(function() {
             closeBubble();
-          }, 60000);
+          }, 40000);
         }
         
         // Zeige Sprechblase nach 3 Sekunden
@@ -1304,6 +1305,12 @@
         
         // Verstecke Sprechblase beim Klick auf Widget
         conciergeButton.addEventListener('click', function() {
+          closeBubble();
+        });
+        
+        // Verstecke Sprechblase beim Klick auf die Sprechblase selbst
+        conciergeBubble.addEventListener('click', function(e) {
+          e.stopPropagation();
           closeBubble();
         });
         
