@@ -1247,6 +1247,7 @@
       
       // Sprechblase nach 3 Sekunden anzeigen
       const conciergeBubble = document.querySelector('[data-concierge-bubble]');
+      let bubbleAutoCloseTimer = null;
       
       if (conciergeBubble) {
         // Positioniere die Sprechblase auf der Höhe des Widgets
@@ -1263,7 +1264,21 @@
         function closeBubble() {
           if (conciergeBubble) {
             conciergeBubble.classList.remove('is-visible');
+            if (bubbleAutoCloseTimer) {
+              clearTimeout(bubbleAutoCloseTimer);
+              bubbleAutoCloseTimer = null;
+            }
           }
+        }
+        
+        // Starte Auto-Close Timer (60 Sekunden = 1 Minute)
+        function startAutoCloseTimer() {
+          if (bubbleAutoCloseTimer) {
+            clearTimeout(bubbleAutoCloseTimer);
+          }
+          bubbleAutoCloseTimer = setTimeout(function() {
+            closeBubble();
+          }, 60000);
         }
         
         // Zeige Sprechblase nach 3 Sekunden
@@ -1273,6 +1288,7 @@
             // Warte kurz, damit Position gesetzt ist, bevor Animation startet
             setTimeout(function() {
               conciergeBubble.classList.add('is-visible');
+              startAutoCloseTimer();
             }, 50);
           }
         }, 3000);
