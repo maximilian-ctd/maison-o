@@ -12,6 +12,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Moon+Dance&display=swap" rel="stylesheet">
+  <!-- Koho Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Koho:wght@400;500;600;700&display=swap" rel="stylesheet">
   <!-- HeyFlow Widget Script -->
   <script src="https://assets.prd.heyflow.com/builder/widget/latest/webview.js"></script>
   <style>
@@ -425,7 +429,7 @@
 
     /* Countdown zum Go-Live */
     .hero-maison__countdown {
-      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'Koho', sans-serif;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -1265,13 +1269,17 @@
           }
         }
         
-        // Toggle Sprechblase (öffnen/schließen)
-        function toggleBubble() {
+        // Öffne Sprechblase oder leite zu WhatsApp weiter
+        function handleWidgetClick() {
           if (conciergeBubble) {
             const isVisible = conciergeBubble.classList.contains('is-visible');
             if (isVisible) {
-              conciergeBubble.classList.remove('is-visible');
+              // Wenn Sprechblase bereits offen ist, zu WhatsApp weiterleiten
+              const whatsappPhoneNumber = '+4915147846932';
+              const whatsappUrl = `https://wa.me/${whatsappPhoneNumber.replace(/[^0-9+]/g, '')}`;
+              window.open(whatsappUrl, '_blank');
             } else {
+              // Wenn Sprechblase geschlossen ist, öffnen
               updateBubblePosition();
               // Warte kurz, damit Position gesetzt ist, bevor Animation startet
               setTimeout(function() {
@@ -1294,7 +1302,7 @@
           }
         });
         
-        // Toggle Sprechblase beim Klick auf Widget (nur wenn nicht gezogen wurde)
+        // Handle Klick auf Widget (nur wenn nicht gezogen wurde)
         conciergeButton.addEventListener('click', function(e) {
           // Prüfe, ob gerade gezogen wurde
           if (window.conciergeWasDragging) {
@@ -1302,7 +1310,7 @@
             return;
           }
           e.stopPropagation();
-          toggleBubble();
+          handleWidgetClick();
         });
         
         // Schließe Sprechblase beim Klick auf die Sprechblase selbst
