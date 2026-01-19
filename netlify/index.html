@@ -494,26 +494,30 @@
     @keyframes concierge-pulse {
       0% {
         transform: scale(1);
-        box-shadow: 0 4px 12px rgba(52, 0, 0, 0.5);
+        box-shadow: 0 4px 12px rgba(52, 0, 0, 0.5), 0 0 0 0 rgba(255, 255, 255, 0.7);
       }
       50% {
-        transform: scale(1.03);
-        box-shadow: 0 4px 12px rgba(52, 0, 0, 0.6), 0 0 0 6px rgba(52, 0, 0, 0);
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(52, 0, 0, 0.6), 0 0 0 10px rgba(255, 255, 255, 0.3);
       }
       100% {
         transform: scale(1);
-        box-shadow: 0 4px 12px rgba(52, 0, 0, 0.5);
+        box-shadow: 0 4px 12px rgba(52, 0, 0, 0.5), 0 0 0 0 rgba(255, 255, 255, 0.7);
       }
     }
 
     @keyframes concierge-pulse-ring {
       0% {
-        opacity: 0.5;
+        opacity: 0.8;
         transform: translate(-50%, -50%) scale(1);
+      }
+      50% {
+        opacity: 0.4;
+        transform: translate(-50%, -50%) scale(1.2);
       }
       100% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(1.3);
+        transform: translate(-50%, -50%) scale(1.5);
       }
     }
 
@@ -537,7 +541,7 @@
       touch-action: none;
       text-decoration: none;
       box-shadow: 0 4px 12px rgba(52, 0, 0, 0.5);
-      animation: concierge-pulse 3s ease-in-out infinite;
+      animation: concierge-pulse 2s ease-in-out infinite;
       padding: 0;
       visibility: visible;
       opacity: 1;
@@ -553,7 +557,7 @@
       border-radius: 50%;
       border: 2px solid rgba(255, 255, 255, 0.3);
       transform: translate(-50%, -50%);
-      animation: concierge-pulse-ring 3s ease-out infinite;
+      animation: concierge-pulse-ring 2s ease-out infinite;
       pointer-events: none;
     }
 
@@ -1092,7 +1096,7 @@
       <div class="hero-maison__concierge-bubble" data-concierge-bubble>
         Bienvenue à la Maison Ô.<br><br>
         Ich bin Louis, Ihr Concierge.<br><br>
-        Unsere Tore öffnen sich am 1. Februar – sichern Sie sich jetzt einen der begehrten Plätze.<br><br>
+        Unsere Tore öffnen sich am 14. Februar – sichern Sie sich jetzt einen der begehrten Plätze.<br><br>
         Bis dahin stehe ich Ihnen jederzeit zur Verfügung.
       </div>
     </section>
@@ -1261,57 +1265,50 @@
           }
         }
         
-        // Schließe Sprechblase
-        function closeBubble() {
+        // Toggle Sprechblase (öffnen/schließen)
+        function toggleBubble() {
           if (conciergeBubble) {
-            conciergeBubble.classList.remove('is-visible');
-            if (bubbleAutoCloseTimer) {
-              clearTimeout(bubbleAutoCloseTimer);
-              bubbleAutoCloseTimer = null;
+            const isVisible = conciergeBubble.classList.contains('is-visible');
+            if (isVisible) {
+              conciergeBubble.classList.remove('is-visible');
+            } else {
+              updateBubblePosition();
+              // Warte kurz, damit Position gesetzt ist, bevor Animation startet
+              setTimeout(function() {
+                conciergeBubble.classList.add('is-visible');
+              }, 50);
             }
           }
         }
         
-        // Starte Auto-Close Timer (40 Sekunden)
-        function startAutoCloseTimer() {
-          if (bubbleAutoCloseTimer) {
-            clearTimeout(bubbleAutoCloseTimer);
-          }
-          bubbleAutoCloseTimer = setTimeout(function() {
-            closeBubble();
-          }, 40000);
-        }
-        
-        // Zeige Sprechblase nach 3 Sekunden
-        setTimeout(function() {
-          if (conciergeBubble && conciergeButton) {
-            updateBubblePosition();
-            // Warte kurz, damit Position gesetzt ist, bevor Animation startet
-            setTimeout(function() {
-              conciergeBubble.classList.add('is-visible');
-              startAutoCloseTimer();
-            }, 50);
-          }
-        }, 3000);
-        
         // Aktualisiere Position bei Scroll und Resize
         window.addEventListener('scroll', function() {
-          updateBubblePosition();
+          if (conciergeBubble && conciergeBubble.classList.contains('is-visible')) {
+            updateBubblePosition();
+          }
         }, { passive: true });
         
         window.addEventListener('resize', function() {
-          updateBubblePosition();
+          if (conciergeBubble && conciergeBubble.classList.contains('is-visible')) {
+            updateBubblePosition();
+          }
         });
         
-        // Verstecke Sprechblase beim Klick auf Widget
-        conciergeButton.addEventListener('click', function() {
-          closeBubble();
+        // Toggle Sprechblase beim Klick auf Widget (nur wenn nicht gezogen wurde)
+        conciergeButton.addEventListener('click', function(e) {
+          // Prüfe, ob gerade gezogen wurde
+          if (window.conciergeWasDragging) {
+            window.conciergeWasDragging = false;
+            return;
+          }
+          e.stopPropagation();
+          toggleBubble();
         });
         
-        // Verstecke Sprechblase beim Klick auf die Sprechblase selbst
+        // Schließe Sprechblase beim Klick auf die Sprechblase selbst
         conciergeBubble.addEventListener('click', function(e) {
           e.stopPropagation();
-          closeBubble();
+          conciergeBubble.classList.remove('is-visible');
         });
         
         // Exportiere updateBubblePosition für Drag-Funktionalität
@@ -1404,24 +1401,24 @@
       document.addEventListener('mouseup', function(e) {
         if (!isDragging) return;
         
+        const didMove = hasMoved;
         isDragging = false;
         conciergeButton.style.cursor = 'grab';
         conciergeButton.style.transition = 'all 0.3s ease';
         
-        // Nur WhatsApp öffnen, wenn nicht verschoben wurde
-        if (!hasMoved) {
-          e.preventDefault();
-          
-          // WhatsApp Business Konfiguration
-          // Format: +491234567890 (mit Ländercode, ohne Leerzeichen oder Bindestriche)
-          const whatsappPhoneNumber = '+4915147846932';
-          
-          // WhatsApp Link erstellen (ohne automatische Nachricht)
-          const whatsappUrl = `https://wa.me/${whatsappPhoneNumber.replace(/[^0-9+]/g, '')}`;
-          
-          // WhatsApp öffnen
-          window.open(whatsappUrl, '_blank');
+        // Markiere, dass gezogen wurde, damit Click-Handler nicht ausgelöst wird
+        if (didMove) {
+          window.conciergeWasDragging = true;
+          // Setze Flag nach kurzer Zeit zurück
+          setTimeout(function() {
+            window.conciergeWasDragging = false;
+          }, 100);
+          return;
         }
+        
+        // Wenn nicht gezogen wurde, ist es ein Klick
+        // Click-Handler wird ausgelöst, hier nur verhindern, dass WhatsApp geöffnet wird
+        e.preventDefault();
       });
       
       // Touch-Events für mobile Geräte
@@ -1468,20 +1465,21 @@
         isDragging = false;
         conciergeButton.style.transition = 'all 0.3s ease';
         
-        // Nur WhatsApp öffnen, wenn nicht verschoben wurde
-        if (!hasMoved) {
-          e.preventDefault();
-          
-          // WhatsApp Business Konfiguration
-          // Format: +491234567890 (mit Ländercode, ohne Leerzeichen oder Bindestriche)
-          const whatsappPhoneNumber = '+4915147846932';
-          
-          // WhatsApp Link erstellen (ohne automatische Nachricht)
-          const whatsappUrl = `https://wa.me/${whatsappPhoneNumber.replace(/[^0-9+]/g, '')}`;
-          
-          // WhatsApp öffnen
-          window.open(whatsappUrl, '_blank');
+        const didMove = hasMoved;
+        
+        // Markiere, dass gezogen wurde, damit Click-Handler nicht ausgelöst wird
+        if (didMove) {
+          window.conciergeWasDragging = true;
+          // Setze Flag nach kurzer Zeit zurück
+          setTimeout(function() {
+            window.conciergeWasDragging = false;
+          }, 100);
+          return;
         }
+        
+        // Wenn nicht gezogen wurde, ist es ein Klick
+        // Click-Handler wird ausgelöst
+        e.preventDefault();
       });
     }
   </script>
@@ -1744,8 +1742,8 @@
       const countdownElement = document.querySelector('[data-countdown]');
       if (!countdownElement) return;
 
-      // Ziel-Datum: 1. Februar 2026, 00:00:00 Uhr (Go-Live)
-      const targetDate = new Date('2026-02-01T00:00:00').getTime();
+      // Ziel-Datum: 14. Februar 2026, 00:00:00 Uhr (Go-Live)
+      const targetDate = new Date('2026-02-14T00:00:00').getTime();
 
       function updateCountdown() {
         const now = new Date().getTime();
