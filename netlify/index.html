@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MAISON Ô - Die Online-Community für mode pré-désirée</title>
+  <title>Maison Ô - Exklusive Mode à la française</title>
   <meta name="description" content="Maison Ô - Treten Sie ein in unsere Maison, wo Luxus, Raffinesse und Mode à la française auf Sie warten.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,10 +12,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Moon+Dance&display=swap" rel="stylesheet">
-  <!-- Koho Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Koho:wght@400;500;600;700&display=swap" rel="stylesheet">
   <!-- HeyFlow Widget Script -->
   <script src="https://assets.prd.heyflow.com/builder/widget/latest/webview.js"></script>
   <style>
@@ -249,44 +245,14 @@
       background: #ffffff;
       padding: 0;
       border-radius: 8px;
-      max-width: 550px;
-      width: auto;
-      max-height: 85vh;
+      max-width: 800px;
+      width: 90%;
+      max-height: 90vh;
       overflow-y: auto;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
       transform: scale(0.9);
       transition: transform 0.3s ease;
       z-index: 1;
-    }
-
-    @media (max-width: 767px) {
-      .hero-maison__heyflow-modal-content {
-        max-width: 85%;
-        width: auto;
-        max-height: 90vh;
-      }
-      
-      .hero-maison__heyflow-modal-content heyflow-wrapper,
-      .hero-maison__heyflow-modal-content .heyflow-form-wrapper,
-      .hero-maison__heyflow-modal-content iframe {
-        transform: scale(0.75);
-        transform-origin: top center;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero-maison__heyflow-modal-content {
-        max-width: 90%;
-        width: auto;
-        max-height: 95vh;
-      }
-      
-      .hero-maison__heyflow-modal-content heyflow-wrapper,
-      .hero-maison__heyflow-modal-content .heyflow-form-wrapper,
-      .hero-maison__heyflow-modal-content iframe {
-        transform: scale(0.7);
-        transform-origin: top center;
-      }
     }
 
     .hero-maison__heyflow-modal.is-open .hero-maison__heyflow-modal-content {
@@ -323,31 +289,14 @@
       height: 20px;
     }
 
-    .hero-maison__heyflow-modal-content heyflow-wrapper,
-    .hero-maison__heyflow-modal-content .heyflow-form-wrapper {
+    .hero-maison__heyflow-modal-content heyflow-wrapper {
       display: block;
       width: 100%;
       min-height: 400px;
-      transform: scale(0.85);
-      transform-origin: top center;
-      margin: 0;
-      padding: 0;
-    }
-
-    /* HeyFlow iframe responsive */
-    .hero-maison__heyflow-modal-content iframe {
-      max-width: 100% !important;
-      width: 100% !important;
-      transform: scale(0.85);
-      transform-origin: top center;
-      margin: 0;
-      padding: 0;
-      border: none;
     }
 
     @media (max-width: 767px) {
-      .hero-maison__heyflow-modal-content heyflow-wrapper,
-      .hero-maison__heyflow-modal-content .heyflow-form-wrapper {
+      .hero-maison__heyflow-modal-content heyflow-wrapper {
         min-height: 300px;
         width: 100% !important;
         max-width: 100% !important;
@@ -355,8 +304,7 @@
     }
 
     @media (max-width: 480px) {
-      .hero-maison__heyflow-modal-content heyflow-wrapper,
-      .hero-maison__heyflow-modal-content .heyflow-form-wrapper {
+      .hero-maison__heyflow-modal-content heyflow-wrapper {
         min-height: 250px;
         width: 100% !important;
         max-width: 100% !important;
@@ -369,19 +317,12 @@
       }
 
       .hero-maison__heyflow-modal-content {
-        max-width: 85%;
-        width: auto;
-        max-height: 90vh;
-        border-radius: 8px;
+        max-width: 100%;
+        width: 100%;
+        max-height: 95vh;
+        border-radius: 0;
         margin: 0;
         transform: scale(1);
-      }
-      
-      .hero-maison__heyflow-modal-content heyflow-wrapper,
-      .hero-maison__heyflow-modal-content .heyflow-form-wrapper,
-      .hero-maison__heyflow-modal-content iframe {
-        transform: scale(0.75);
-        transform-origin: top center;
       }
 
       .hero-maison__heyflow-modal-close {
@@ -401,22 +342,15 @@
 
     @media (max-width: 480px) {
       .hero-maison__heyflow-modal {
-        padding: 5px;
+        padding: 0;
       }
 
       .hero-maison__heyflow-modal-content {
-        max-width: 90%;
-        width: auto;
-        max-height: 95vh;
-        border-radius: 8px;
-        height: auto;
-      }
-      
-      .hero-maison__heyflow-modal-content heyflow-wrapper,
-      .hero-maison__heyflow-modal-content .heyflow-form-wrapper,
-      .hero-maison__heyflow-modal-content iframe {
-        transform: scale(0.7);
-        transform-origin: top center;
+        max-width: 100%;
+        width: 100%;
+        max-height: 100vh;
+        border-radius: 0;
+        height: 100vh;
       }
 
       .hero-maison__heyflow-modal-close {
@@ -429,7 +363,7 @@
 
     /* Countdown zum Go-Live */
     .hero-maison__countdown {
-      font-family: 'Koho', sans-serif;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -498,30 +432,26 @@
     @keyframes concierge-pulse {
       0% {
         transform: scale(1);
-        box-shadow: 0 4px 12px rgba(52, 0, 0, 0.5), 0 0 0 0 rgba(255, 255, 255, 0.7);
+        box-shadow: 0 4px 12px rgba(52, 0, 0, 0.5);
       }
       50% {
-        transform: scale(1.05);
-        box-shadow: 0 4px 12px rgba(52, 0, 0, 0.6), 0 0 0 10px rgba(255, 255, 255, 0.3);
+        transform: scale(1.03);
+        box-shadow: 0 4px 12px rgba(52, 0, 0, 0.6), 0 0 0 6px rgba(52, 0, 0, 0);
       }
       100% {
         transform: scale(1);
-        box-shadow: 0 4px 12px rgba(52, 0, 0, 0.5), 0 0 0 0 rgba(255, 255, 255, 0.7);
+        box-shadow: 0 4px 12px rgba(52, 0, 0, 0.5);
       }
     }
 
     @keyframes concierge-pulse-ring {
       0% {
-        opacity: 0.8;
+        opacity: 0.5;
         transform: translate(-50%, -50%) scale(1);
-      }
-      50% {
-        opacity: 0.4;
-        transform: translate(-50%, -50%) scale(1.2);
       }
       100% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(1.5);
+        transform: translate(-50%, -50%) scale(1.3);
       }
     }
 
@@ -545,7 +475,7 @@
       touch-action: none;
       text-decoration: none;
       box-shadow: 0 4px 12px rgba(52, 0, 0, 0.5);
-      animation: concierge-pulse 2s ease-in-out infinite;
+      animation: concierge-pulse 3s ease-in-out infinite;
       padding: 0;
       visibility: visible;
       opacity: 1;
@@ -561,7 +491,7 @@
       border-radius: 50%;
       border: 2px solid rgba(255, 255, 255, 0.3);
       transform: translate(-50%, -50%);
-      animation: concierge-pulse-ring 2s ease-out infinite;
+      animation: concierge-pulse-ring 3s ease-out infinite;
       pointer-events: none;
     }
 
@@ -593,72 +523,6 @@
     .hero-maison__concierge-icon:hover .hero-maison__concierge-icon-image {
       opacity: 1;
       transform: scale(1.15);
-    }
-
-    /* Sprechblase für Widget */
-    .hero-maison__concierge-bubble {
-      position: fixed;
-      right: 130px;
-      z-index: 1001;
-      background: #ffffff;
-      color: #340000;
-      padding: 18px 22px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 400;
-      line-height: 1.6;
-      max-width: 320px;
-      min-width: 280px;
-      width: auto;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease;
-      pointer-events: auto;
-      white-space: normal;
-      transform: translateY(-50%);
-      text-align: left;
-      cursor: pointer;
-    }
-
-    .hero-maison__concierge-bubble::after {
-      content: '';
-      position: absolute;
-      right: -8px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 8px 0 8px 8px;
-      border-color: transparent transparent transparent #ffffff;
-    }
-
-    .hero-maison__concierge-bubble.is-visible {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(-50%) translateX(-10px);
-    }
-
-    @media (max-width: 768px) {
-      .hero-maison__concierge-bubble {
-        right: 120px;
-        max-width: 280px;
-        min-width: 240px;
-        font-size: 0.85rem;
-        padding: 15px 18px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero-maison__concierge-bubble {
-        right: 110px;
-        max-width: 240px;
-        min-width: 200px;
-        font-size: 0.8rem;
-        padding: 12px 15px;
-      }
     }
 
 
@@ -873,8 +737,8 @@
         width: 75px;
         height: 75px;
         border-width: 1.5px;
-        position: absolute;
-        z-index: 3;
+        position: fixed;
+        z-index: 1000;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -981,8 +845,8 @@
         left: auto;
         width: 65px;
         height: 65px;
-        position: absolute;
-        z-index: 3;
+        position: fixed;
+        z-index: 1000;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1013,8 +877,8 @@
           id="heroVideo"
           style="display: block !important; visibility: visible !important; opacity: 1 !important;"
         >
-          <!-- Video: Maison O.mp4 -->
-          <source src="Maison O.mp4" type="video/mp4">
+          <!-- Video: videoplayback.mp4 -->
+          <source src="videoplayback.mp4" type="video/mp4">
         </video>
         
         <!-- Placeholder wenn kein Video -->
@@ -1071,7 +935,7 @@
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
           </button>
-          <heyflow-wrapper flow-id="OXukvFlXlOj4Om7gpATS" dynamic-height scroll-up-on-navigation style-config='{"width":"500px"}' class="heyflow-form-wrapper"></heyflow-wrapper>
+          <heyflow-wrapper flow-id="OXukvFlXlOj4Om7gpATS" dynamic-height scroll-up-on-navigation style-config='{"width":"800px"}'></heyflow-wrapper>
         </div>
       </div>
 
@@ -1097,12 +961,6 @@
           class="hero-maison__concierge-icon-image"
         >
       </button>
-      <div class="hero-maison__concierge-bubble" data-concierge-bubble>
-        Bienvenue à la Maison Ô.<br><br>
-        Ich bin Louis, Ihr Concierge.<br><br>
-        Unsere Tore öffnen sich am 14. Februar – sichern Sie sich jetzt einen der begehrten Plätze.<br><br>
-        Bis dahin stehe ich Ihnen jederzeit zur Verfügung.
-      </div>
     </section>
   </div>
 
@@ -1174,8 +1032,7 @@
         
         const logoRect = brandLogo.getBoundingClientRect();
         const widgetHeight = conciergeButton.offsetHeight || 100;
-        const offsetUp = 160; // Widget weiter nach oben verschieben
-        const widgetTop = logoRect.top + (logoRect.height / 2) - (widgetHeight / 2) - offsetUp;
+        const widgetTop = logoRect.top + (logoRect.height / 2) - (widgetHeight / 2);
         
         // Immer rechts am Rand fixieren
         conciergeButton.style.right = '30px';
@@ -1184,11 +1041,6 @@
         conciergeButton.style.bottom = 'auto';
         conciergeButton.style.visibility = 'visible';
         conciergeButton.style.opacity = '1';
-        
-        // Aktualisiere Sprechblase-Position
-        if (window.updateBubblePosition) {
-          window.updateBubblePosition();
-        }
       }
       
       // Gespeicherte Position nur auf Desktop laden
@@ -1254,79 +1106,22 @@
         });
       }
       
-      // Sprechblase nach 3 Sekunden anzeigen
-      const conciergeBubble = document.querySelector('[data-concierge-bubble]');
-      let bubbleAutoCloseTimer = null;
-      
-      if (conciergeBubble) {
-        // Positioniere die Sprechblase auf der Höhe des Widgets
-        function updateBubblePosition() {
-          if (conciergeButton && conciergeBubble) {
-            const buttonRect = conciergeButton.getBoundingClientRect();
-            const bubbleTop = buttonRect.top + (buttonRect.height / 2);
-            conciergeBubble.style.top = bubbleTop + 'px';
-            conciergeBubble.style.transform = 'translateY(-50%)';
-          }
-        }
-        
-        // Öffne Sprechblase oder leite zu WhatsApp weiter
-        function handleWidgetClick() {
-          if (conciergeBubble) {
-            const isVisible = conciergeBubble.classList.contains('is-visible');
-            if (isVisible) {
-              // Wenn Sprechblase bereits offen ist, zu WhatsApp weiterleiten
-              const whatsappPhoneNumber = '+4915147846932';
-              const whatsappUrl = `https://wa.me/${whatsappPhoneNumber.replace(/[^0-9+]/g, '')}`;
-              window.open(whatsappUrl, '_blank');
-            } else {
-              // Wenn Sprechblase geschlossen ist, öffnen
-              updateBubblePosition();
-              // Warte kurz, damit Position gesetzt ist, bevor Animation startet
-              setTimeout(function() {
-                conciergeBubble.classList.add('is-visible');
-              }, 50);
-            }
-          }
-        }
-        
-        // Aktualisiere Position bei Scroll und Resize
-        window.addEventListener('scroll', function() {
-          if (conciergeBubble && conciergeBubble.classList.contains('is-visible')) {
-            updateBubblePosition();
-          }
-        }, { passive: true });
-        
-        window.addEventListener('resize', function() {
-          if (conciergeBubble && conciergeBubble.classList.contains('is-visible')) {
-            updateBubblePosition();
-          }
-        });
-        
-        // Handle Klick auf Widget (nur wenn nicht gezogen wurde)
-        conciergeButton.addEventListener('click', function(e) {
-          // Prüfe, ob gerade gezogen wurde
-          if (window.conciergeWasDragging) {
-            window.conciergeWasDragging = false;
-            return;
-          }
-          e.stopPropagation();
-          handleWidgetClick();
-        });
-        
-        // Schließe Sprechblase beim Klick auf die Sprechblase selbst
-        conciergeBubble.addEventListener('click', function(e) {
-          e.stopPropagation();
-          conciergeBubble.classList.remove('is-visible');
-        });
-        
-        // Exportiere updateBubblePosition für Drag-Funktionalität
-        window.updateBubblePosition = updateBubblePosition;
-      }
-      
       // Drag-Funktionalität
+      const DRAG_THRESHOLD_PX = 15;
       let isDragging = false;
       let startY, initialTop;
       let hasMoved = false;
+      let openedViaTouch = false;
+      
+      function openWhatsApp() {
+        const whatsappPhoneNumber = '+4915147846932';
+        const preFilledMessage = 'Hallo, ich habe eine Frage zu Maison Ô.';
+        const baseUrl = 'https://wa.me/' + whatsappPhoneNumber.replace(/[^0-9+]/g, '');
+        const whatsappUrl = preFilledMessage
+          ? baseUrl + '?text=' + encodeURIComponent(preFilledMessage)
+          : baseUrl;
+        window.open(whatsappUrl, '_blank');
+      }
       
       function getPosition(element) {
         const rect = element.getBoundingClientRect();
@@ -1362,11 +1157,6 @@
           top: top + 'px',
           right: '30px'
         }));
-        
-        // Aktualisiere Sprechblase-Position
-        if (window.updateBubblePosition) {
-          window.updateBubblePosition();
-        }
       }
       
       // Maus-Events (nur auf Desktop)
@@ -1390,59 +1180,44 @@
         
         const deltaY = e.clientY - startY;
         
-        // Nur vertikale Bewegung zulassen
-        if (Math.abs(deltaY) > 5) {
+        if (Math.abs(deltaY) > DRAG_THRESHOLD_PX) {
           hasMoved = true;
         }
         
-        // Nur vertikale Position berechnen
         const elementRect = conciergeButton.getBoundingClientRect();
         const currentTop = elementRect.top;
         const newTop = currentTop + deltaY;
         
         setPosition(conciergeButton, newTop);
         
-        // Start-Position für nächste Bewegung aktualisieren
         startY = e.clientY;
       });
       
       document.addEventListener('mouseup', function(e) {
         if (!isDragging) return;
         
-        const didMove = hasMoved;
         isDragging = false;
         conciergeButton.style.cursor = 'grab';
         conciergeButton.style.transition = 'all 0.3s ease';
         
-        // Markiere, dass gezogen wurde, damit Click-Handler nicht ausgelöst wird
-        if (didMove) {
-          window.conciergeWasDragging = true;
-          // Setze Flag nach kurzer Zeit zurück
-          setTimeout(function() {
-            window.conciergeWasDragging = false;
-          }, 100);
-          return;
+        if (!hasMoved) {
+          e.preventDefault();
+          openWhatsApp();
         }
-        
-        // Wenn nicht gezogen wurde, ist es ein Klick
-        // Click-Handler wird ausgelöst, hier nur verhindern, dass WhatsApp geöffnet wird
-        e.preventDefault();
       });
       
-      // Touch-Events für mobile Geräte
+      // Touch-Events für mobile Geräte (kein preventDefault in touchstart, damit window.open erlaubt bleibt)
       conciergeButton.addEventListener('touchstart', function(e) {
         isDragging = true;
         hasMoved = false;
         const touch = e.touches[0];
         startY = touch.clientY;
         
-        // Nur vertikale Start-Position speichern
         const elementRect = conciergeButton.getBoundingClientRect();
         initialTop = elementRect.top;
         
         conciergeButton.style.transition = 'none';
-        e.preventDefault();
-      }, { passive: false });
+      }, { passive: true });
       
       document.addEventListener('touchmove', function(e) {
         if (!isDragging) return;
@@ -1450,21 +1225,18 @@
         const touch = e.touches[0];
         const deltaY = touch.clientY - startY;
         
-        // Nur vertikale Bewegung zulassen
-        if (Math.abs(deltaY) > 5) {
+        if (Math.abs(deltaY) > DRAG_THRESHOLD_PX) {
           hasMoved = true;
         }
         
-        // Nur vertikale Position berechnen
         const elementRect = conciergeButton.getBoundingClientRect();
         const currentTop = elementRect.top;
         const newTop = currentTop + deltaY;
         
         setPosition(conciergeButton, newTop);
         
-        // Start-Position für nächste Bewegung aktualisieren
         startY = touch.clientY;
-        e.preventDefault();
+        if (hasMoved) e.preventDefault();
       }, { passive: false });
       
       document.addEventListener('touchend', function(e) {
@@ -1473,21 +1245,22 @@
         isDragging = false;
         conciergeButton.style.transition = 'all 0.3s ease';
         
-        const didMove = hasMoved;
-        
-        // Markiere, dass gezogen wurde, damit Click-Handler nicht ausgelöst wird
-        if (didMove) {
-          window.conciergeWasDragging = true;
-          // Setze Flag nach kurzer Zeit zurück
-          setTimeout(function() {
-            window.conciergeWasDragging = false;
-          }, 100);
+        if (!hasMoved) {
+          openWhatsApp();
+          openedViaTouch = true;
+          setTimeout(function() { openedViaTouch = false; }, 500);
+        }
+      });
+      
+      // Click-Fallback für Mobile (falls touchend nicht ausreicht)
+      conciergeButton.addEventListener('click', function(e) {
+        if (isDesktop()) return;
+        if (openedViaTouch) {
+          e.preventDefault();
           return;
         }
-        
-        // Wenn nicht gezogen wurde, ist es ein Klick
-        // Click-Handler wird ausgelöst
         e.preventDefault();
+        openWhatsApp();
       });
     }
   </script>
@@ -1750,8 +1523,8 @@
       const countdownElement = document.querySelector('[data-countdown]');
       if (!countdownElement) return;
 
-      // Ziel-Datum: 14. Februar 2026, 00:00:00 Uhr (Go-Live)
-      const targetDate = new Date('2026-02-14T00:00:00').getTime();
+      // Ziel-Datum: 15. Januar 2026, 00:00:00 Uhr
+      const targetDate = new Date('2026-01-15T00:00:00').getTime();
 
       function updateCountdown() {
         const now = new Date().getTime();
@@ -1922,9 +1695,6 @@
     setTimeout(initHeyFlowModal, 100);
     setTimeout(initHeyFlowModal, 500);
   </script>
-  
-  <!-- Verstecktes Bild für externe Verwendung -->
-  <img src="cadan.png" alt="cadan" style="display: none; position: absolute; left: -9999px; width: 1px; height: 1px;" id="hiddenCadanImage">
 </body>
 </html>
 
