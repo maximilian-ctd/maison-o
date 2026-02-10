@@ -458,9 +458,8 @@
     }
 
     .hero-maison__concierge-icon {
-      position: fixed;
-      right: 30px;
-      z-index: 1000;
+      position: relative;
+      flex-shrink: 0;
       width: 100px;
       height: 100px;
       display: flex;
@@ -527,7 +526,55 @@
       transform: scale(1.15);
     }
 
+    /* Concierge-Wrapper (Sprechblase + Louis) */
+    .hero-maison__concierge-wrap {
+      position: fixed;
+      right: 30px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-direction: row;
+      pointer-events: none;
+    }
+    .hero-maison__concierge-wrap .hero-maison__concierge-icon {
+      pointer-events: auto;
+    }
 
+    /* Sprechblase von Louis */
+    .hero-maison__concierge-speech {
+      position: relative;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      line-height: 1.35;
+      color: #340000;
+      background: rgba(255, 255, 255, 0.75);
+      padding: 12px 16px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.4);
+      max-width: 220px;
+      pointer-events: none;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+    .hero-maison__concierge-speech.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .hero-maison__concierge-speech::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -8px;
+      transform: translateY(-50%) rotate(45deg);
+      width: 16px;
+      height: 16px;
+      background: rgba(255, 255, 255, 0.75);
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
     /* Placeholder für Video */
     .hero-maison__video-placeholder {
@@ -631,11 +678,16 @@
         font-size: 1.2rem;
       }
 
-      .hero-maison__concierge-icon {
-        bottom: 25px;
+      .hero-maison__concierge-wrap {
         right: 25px;
+      }
+      .hero-maison__concierge-icon {
         width: 90px;
         height: 90px;
+      }
+      .hero-maison__concierge-speech {
+        font-size: 0.95rem;
+        max-width: 200px;
       }
     }
 
@@ -732,18 +784,27 @@
         font-size: 1.1rem;
       }
 
-      .hero-maison__concierge-icon {
-        bottom: 60px;
+      .hero-maison__concierge-wrap {
         right: 20px;
-        left: auto;
+        gap: 8px;
+      }
+      .hero-maison__concierge-icon {
         width: 75px;
         height: 75px;
         border-width: 1.5px;
-        position: fixed;
-        z-index: 1000;
         display: flex;
         align-items: center;
         justify-content: center;
+      }
+      .hero-maison__concierge-speech {
+        font-size: 0.85rem;
+        padding: 10px 12px;
+        max-width: 160px;
+      }
+      .hero-maison__concierge-speech::after {
+        width: 12px;
+        height: 12px;
+        right: -6px;
       }
 
       .hero-maison__concierge-icon-image {
@@ -841,17 +902,26 @@
         font-size: 1rem;
       }
 
-      .hero-maison__concierge-icon {
-        bottom: 50px;
+      .hero-maison__concierge-wrap {
         right: 15px;
-        left: auto;
+        gap: 6px;
+      }
+      .hero-maison__concierge-icon {
         width: 65px;
         height: 65px;
-        position: fixed;
-        z-index: 1000;
         display: flex;
         align-items: center;
         justify-content: center;
+      }
+      .hero-maison__concierge-speech {
+        font-size: 0.8rem;
+        padding: 8px 10px;
+        max-width: 140px;
+      }
+      .hero-maison__concierge-speech::after {
+        width: 10px;
+        height: 10px;
+        right: -5px;
       }
 
       .hero-maison__concierge-icon-image {
@@ -955,14 +1025,17 @@
         <h1 class="hero-maison__brand-text" id="brandText" style="display: none;">MAISON Ô</h1>
       </div>
 
-      <!-- Bottom Right Icon - Concierge -->
-      <button type="button" class="hero-maison__concierge-icon" aria-label="Concierge" data-concierge-chat>
-        <img 
-          src="Louis.jpeg" 
-          alt="Concierge"
-          class="hero-maison__concierge-icon-image"
-        >
-      </button>
+      <!-- Concierge (Louis) mit Sprechblase -->
+      <div class="hero-maison__concierge-wrap" data-concierge-wrap>
+        <div class="hero-maison__concierge-speech">Bienvenue à la Maison Ô</div>
+        <button type="button" class="hero-maison__concierge-icon" aria-label="Concierge" data-concierge-chat>
+          <img 
+            src="Louis.jpeg" 
+            alt="Concierge"
+            class="hero-maison__concierge-icon-image"
+          >
+        </button>
+      </div>
     </section>
   </div>
 
@@ -1019,30 +1092,31 @@
 
     // Concierge Widget - Drag & Chat Handler
     const conciergeButton = document.querySelector('[data-concierge-chat]');
+    const conciergeWrap = document.querySelector('[data-concierge-wrap]');
     const heroSection = document.querySelector('.hero-maison');
     const brandLogo = document.querySelector('.hero-maison__brand');
     
-    if (conciergeButton && heroSection) {
+    if (conciergeButton && conciergeWrap && heroSection) {
       // Funktion zum Prüfen ob Desktop-Ansicht
       function isDesktop() {
         return window.matchMedia('(min-width: 768px)').matches;
       }
       
-      // Funktion zum Positionieren des Widgets auf Logo-Höhe
+      // Funktion zum Positionieren des Widgets oberhalb des Logos (Sprechblase links, Louis rechts)
       function positionWidgetAtLogoHeight() {
         if (!brandLogo) return;
         
         const logoRect = brandLogo.getBoundingClientRect();
-        const widgetHeight = conciergeButton.offsetHeight || 100;
-        const widgetTop = logoRect.top + (logoRect.height / 2) - (widgetHeight / 2);
+        const widgetHeight = conciergeWrap.offsetHeight || 100;
+        const gapAboveLogo = 24;
+        const widgetTop = Math.max(20, logoRect.top - widgetHeight - gapAboveLogo);
         
-        // Immer rechts am Rand fixieren
-        conciergeButton.style.right = '30px';
-        conciergeButton.style.left = 'auto';
-        conciergeButton.style.top = widgetTop + 'px';
-        conciergeButton.style.bottom = 'auto';
-        conciergeButton.style.visibility = 'visible';
-        conciergeButton.style.opacity = '1';
+        conciergeWrap.style.right = '30px';
+        conciergeWrap.style.left = 'auto';
+        conciergeWrap.style.top = widgetTop + 'px';
+        conciergeWrap.style.bottom = 'auto';
+        conciergeWrap.style.visibility = 'visible';
+        conciergeWrap.style.opacity = '1';
       }
       
       // Gespeicherte Position nur auf Desktop laden
@@ -1051,24 +1125,20 @@
         if (savedPosition) {
           try {
             const pos = JSON.parse(savedPosition);
-            // Immer rechts am Rand fixieren
-            conciergeButton.style.right = pos.right || '30px';
-            conciergeButton.style.left = 'auto';
-            conciergeButton.style.top = pos.top;
-            conciergeButton.style.bottom = 'auto';
-            conciergeButton.style.visibility = 'visible';
-            conciergeButton.style.opacity = '1';
+            conciergeWrap.style.right = pos.right || '30px';
+            conciergeWrap.style.left = 'auto';
+            conciergeWrap.style.top = pos.top;
+            conciergeWrap.style.bottom = 'auto';
+            conciergeWrap.style.visibility = 'visible';
+            conciergeWrap.style.opacity = '1';
           } catch (e) {
             console.error('Fehler beim Laden der Widget-Position:', e);
-            // Fallback: Auf Logo-Höhe positionieren
             positionWidgetAtLogoHeight();
           }
         } else {
-          // Standard-Position: Auf Logo-Höhe
           positionWidgetAtLogoHeight();
         }
       } else {
-        // Auf Mobile: Auf Logo-Höhe positionieren
         positionWidgetAtLogoHeight();
       }
       
@@ -1108,6 +1178,14 @@
         });
       }
       
+      // Sprechblase nach 5 Sekunden ausblenden
+      var speechBubble = conciergeWrap.querySelector('.hero-maison__concierge-speech');
+      if (speechBubble) {
+        setTimeout(function() {
+          speechBubble.classList.add('is-hidden');
+        }, 5000);
+      }
+      
       // Drag-Funktionalität
       const DRAG_THRESHOLD_PX = 15;
       let isDragging = false;
@@ -1115,14 +1193,21 @@
       let hasMoved = false;
       let openedViaTouch = false;
       
-      function openWhatsApp() {
-        const whatsappPhoneNumber = '+4915147846932';
-        const preFilledMessage = 'Hallo, ich habe eine Frage zu Maison Ô.';
-        const baseUrl = 'https://wa.me/' + whatsappPhoneNumber.replace(/[^0-9+]/g, '');
-        const whatsappUrl = preFilledMessage
+      var whatsappPhoneNumber = '+4915147846932';
+      var preFilledMessage = 'Hallo, ich habe eine Frage zu Maison Ô.';
+      function getWhatsAppUrl() {
+        var baseUrl = 'https://wa.me/' + whatsappPhoneNumber.replace(/[^0-9+]/g, '');
+        return preFilledMessage
           ? baseUrl + '?text=' + encodeURIComponent(preFilledMessage)
           : baseUrl;
-        window.open(whatsappUrl, '_blank');
+      }
+      /** Mobil: Weiterleitung zu WhatsApp (App). */
+      function openWhatsApp() {
+        window.open(getWhatsAppUrl(), '_blank');
+      }
+      /** Desktop: Chat öffnen (WhatsApp Web). */
+      function openChat() {
+        window.open(getWhatsAppUrl(), '_blank');
       }
       
       function getPosition(element) {
@@ -1137,24 +1222,22 @@
       }
       
       function setPosition(element, top) {
-        // Nur auf Desktop Position speichern
         if (!isDesktop()) return;
+        var wrap = element.closest('[data-concierge-wrap]') || conciergeWrap;
+        if (!wrap) return;
         
-        const elementRect = element.getBoundingClientRect();
+        const elementRect = wrap.getBoundingClientRect();
         const viewportHeight = window.innerHeight;
         const minTop = 0;
         const maxTop = viewportHeight - elementRect.height;
         
-        // Nur vertikale Position begrenzen
         top = Math.max(minTop, Math.min(top, maxTop));
         
-        // Immer rechts am Rand fixieren
-        element.style.right = '30px';
-        element.style.left = 'auto';
-        element.style.top = top + 'px';
-        element.style.bottom = 'auto';
+        wrap.style.right = '30px';
+        wrap.style.left = 'auto';
+        wrap.style.top = top + 'px';
+        wrap.style.bottom = 'auto';
         
-        // Position nur auf Desktop speichern (nur top, right ist immer 30px)
         localStorage.setItem('concierge-widget-position', JSON.stringify({
           top: top + 'px',
           right: '30px'
@@ -1169,7 +1252,7 @@
         startY = e.clientY;
         
         // Nur vertikale Start-Position speichern
-        const elementRect = conciergeButton.getBoundingClientRect();
+        const elementRect = conciergeWrap.getBoundingClientRect();
         initialTop = elementRect.top;
         
         conciergeButton.style.cursor = 'grabbing';
@@ -1186,11 +1269,11 @@
           hasMoved = true;
         }
         
-        const elementRect = conciergeButton.getBoundingClientRect();
+        const elementRect = conciergeWrap.getBoundingClientRect();
         const currentTop = elementRect.top;
         const newTop = currentTop + deltaY;
         
-        setPosition(conciergeButton, newTop);
+        setPosition(conciergeWrap, newTop);
         
         startY = e.clientY;
       });
@@ -1204,7 +1287,7 @@
         
         if (!hasMoved) {
           e.preventDefault();
-          openWhatsApp();
+          openChat();
         }
       });
       
@@ -1215,7 +1298,7 @@
         const touch = e.touches[0];
         startY = touch.clientY;
         
-        const elementRect = conciergeButton.getBoundingClientRect();
+        const elementRect = conciergeWrap.getBoundingClientRect();
         initialTop = elementRect.top;
         
         conciergeButton.style.transition = 'none';
@@ -1231,11 +1314,11 @@
           hasMoved = true;
         }
         
-        const elementRect = conciergeButton.getBoundingClientRect();
+        const elementRect = conciergeWrap.getBoundingClientRect();
         const currentTop = elementRect.top;
         const newTop = currentTop + deltaY;
         
-        setPosition(conciergeButton, newTop);
+        setPosition(conciergeWrap, newTop);
         
         startY = touch.clientY;
         if (hasMoved) e.preventDefault();
