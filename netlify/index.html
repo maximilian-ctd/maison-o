@@ -12,6 +12,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Moon+Dance&display=swap" rel="stylesheet">
+  <!-- Parisienne: hochwertige, filigrane Schreibschrift für „Wir öffnen unsere Maison …“ -->
+  <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
   <!-- HeyFlow Widget Script -->
   <script src="https://assets.prd.heyflow.com/builder/widget/latest/webview.js"></script>
   <style>
@@ -34,14 +36,14 @@
       background: white;
     }
 
-    /* Hero Section */
+    /* Hero Section – overflow: visible, damit Logo in den Footer-Bereich ragen kann */
     .hero-maison {
       position: sticky;
       top: 0;
       width: 100%;
       height: 100vh;
       min-height: 600px;
-      overflow: hidden;
+      overflow: visible;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -88,13 +90,13 @@
       z-index: 1;
     }
 
-    /* Brand Logo - Unten zentriert, fließt in nächsten Abschnitt über */
+    /* Brand Logo – fixed, steht sichtbar auf dem Footer (darüber) */
     .hero-maison__brand {
-      position: absolute;
+      position: fixed;
       bottom: 0;
       left: 50%;
-      transform: translateX(-50%) translateY(35%);
-      z-index: 2;
+      transform: translateX(-50%) translateY(0);
+      z-index: 100;
       text-align: center;
       padding: 0 20px;
       width: 100%;
@@ -181,7 +183,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      margin-top: -60px;
+      margin-top: 20px;
       z-index: 1000 !important;
       color: rgba(255, 255, 255, 0.9) !important;
       font-size: 1.5rem;
@@ -370,15 +372,32 @@
       }
     }
 
-    /* Countdown zum Go-Live */
-    .hero-maison__countdown {
-      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    /* Countdown-Block (Text + Countdown) */
+    .hero-maison__countdown-block {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       margin-top: -140px;
       z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .hero-maison__countdown-lead {
+      font-family: 'Parisienne', cursive;
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: #ffffff;
+      text-align: center;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5);
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+    /* Countdown zum Go-Live */
+    .hero-maison__countdown {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       color: #ffffff;
       display: flex;
       align-items: center;
@@ -616,7 +635,7 @@
       }
 
       .hero-maison__brand {
-        transform: translateX(-50%) translateY(30%);
+        transform: translateX(-50%) translateY(0);
       }
 
       .hero-maison__brand-logo-wrapper {
@@ -651,7 +670,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        margin-top: -50px;
+        margin-top: 50px;
         font-size: 1.3rem;
         text-align: center;
       }
@@ -662,11 +681,13 @@
         text-decoration-thickness: 2px;
       }
 
-      .hero-maison__countdown {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+      .hero-maison__countdown-block {
         margin-top: -130px;
+      }
+      .hero-maison__countdown-lead {
+        font-size: 1.9rem;
+      }
+      .hero-maison__countdown {
         padding: 8px 16px;
         gap: 0.35rem;
       }
@@ -708,7 +729,7 @@
       }
 
       .hero-maison__brand {
-        transform: translateX(-50%) translateY(35%);
+        transform: translateX(-50%) translateY(0);
         left: 50%;
         right: auto;
         padding: 0 20px;
@@ -753,7 +774,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        margin-top: -40px;
+        margin-top: 60px;
         font-size: 1.1rem;
         max-width: 90%;
         text-align: center;
@@ -767,11 +788,15 @@
         text-decoration-thickness: 2px;
       }
 
-      .hero-maison__countdown {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+      .hero-maison__countdown-block {
         margin-top: -120px;
+      }
+      .hero-maison__countdown-lead {
+        font-size: 1.6rem;
+        white-space: normal;
+        max-width: 90%;
+      }
+      .hero-maison__countdown {
         padding: 6px 12px;
         gap: 0.25rem;
         z-index: 3;
@@ -835,7 +860,7 @@
       }
 
       .hero-maison__brand {
-        transform: translateX(-50%) translateY(35%);
+        transform: translateX(-50%) translateY(0);
         left: 50%;
         right: auto;
         padding: 0 20px;
@@ -872,7 +897,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        margin-top: -35px;
+        margin-top: 70px;
         font-size: 1rem;
         max-width: 90%;
         text-align: center;
@@ -885,11 +910,15 @@
         text-decoration-thickness: 2px;
       }
 
-      .hero-maison__countdown {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+      .hero-maison__countdown-block {
         margin-top: -110px;
+      }
+      .hero-maison__countdown-lead {
+        font-size: 1.4rem;
+        white-space: normal;
+        max-width: 92%;
+      }
+      .hero-maison__countdown {
         padding: 5px 10px;
         gap: 0.2rem;
         z-index: 3;
@@ -981,8 +1010,10 @@
         Sichern Sie sich Ihren exklusiven Zugang
       </button>
 
-      <!-- Countdown zum Go-Live -->
-      <div class="hero-maison__countdown" data-countdown>
+      <!-- Countdown-Block: Schreibschrift + Countdown -->
+      <div class="hero-maison__countdown-block">
+        <p class="hero-maison__countdown-lead">Wir öffnen unsere Maison in …</p>
+        <div class="hero-maison__countdown" data-countdown>
         <div class="hero-maison__countdown-item">
           <span class="hero-maison__countdown-value" data-countdown-days>00</span>
           <span class="hero-maison__countdown-label">Tage</span>
@@ -1002,6 +1033,7 @@
           <span class="hero-maison__countdown-value" data-countdown-seconds>00</span>
           <span class="hero-maison__countdown-label">Sekunden</span>
         </div>
+      </div>
       </div>
 
       <!-- HeyFlow Modal -->
@@ -1403,7 +1435,7 @@
     })();
   </script>
 
-  <!-- Footer -->
+  <!-- Footer – am unteren Rand sichtbar, Logo liegt mit z-index darüber -->
   <footer style="background-color: #340000; color: #ffffff; padding-top: 0; padding-bottom: 32px; padding-left: 0; padding-right: 0; margin-top: 0; position: relative; z-index: 20; width: 100%;">
     <div style="width: 100%; max-width: none; margin: 0; display: flex; justify-content: center; align-items: center; flex-wrap: nowrap; gap: 30px; padding-left: 0; padding-right: 0; padding-top: 20px; position: relative;">
       <nav style="flex: 1 1 auto; min-width: 0; display: flex; justify-content: center; align-items: center;" class="footer__nav">
