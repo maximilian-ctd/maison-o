@@ -67,6 +67,15 @@
       visibility: visible;
       opacity: 1;
     }
+    @media (max-width: 767px) {
+      .hero-maison__video {
+        object-fit: cover;
+        object-position: center center;
+      }
+      .hero-maison__video-wrapper {
+        -webkit-overflow-scrolling: touch;
+      }
+    }
 
     /* Video Overlay - Sehr dunkel für atmosphärischen Effekt */
     .hero-maison__overlay {
@@ -939,7 +948,6 @@
     <section class="hero-maison">
       <!-- Video Background -->
       <div class="hero-maison__video-wrapper">
-        <!-- Video Element - Hier kannst du dein Video einfügen -->
         <video 
           class="hero-maison__video" 
           autoplay 
@@ -949,8 +957,7 @@
           id="heroVideo"
           style="display: block !important; visibility: visible !important; opacity: 1 !important;"
         >
-          <!-- Video: videoplayback.mp4 -->
-          <source src="videoplayback.mp4" type="video/mp4">
+          <source src="maison-o_Website-Header_V4_small.mp4" type="video/mp4">
         </video>
         
         <!-- Placeholder wenn kein Video -->
@@ -1045,13 +1052,11 @@
     const placeholder = document.getElementById('videoPlaceholder');
     const overlay = document.getElementById('videoOverlay');
     
-    // Verstecke Placeholder standardmäßig
-    if (placeholder) {
-      placeholder.style.display = 'none';
-    }
+    if (placeholder) placeholder.style.display = 'none';
     
-    // Zeige Video standardmäßig
     if (video) {
+      // Mobil: weniger Vorladen (Daten sparen). Desktop: preload auto für flüssigen Start.
+      video.preload = window.innerWidth < 768 ? 'metadata' : 'auto';
       video.style.display = 'block';
       video.style.visibility = 'visible';
       video.style.opacity = '1';
