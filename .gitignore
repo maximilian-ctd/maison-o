@@ -31,3 +31,6 @@ npm-debug.log*
 *.tmp
 .cache/
 
+# Hero-Video nur unter netlify/ versionieren (keine Doppelung in sandbox/)
+sandbox/videos/maison-o_Website-Header_V4_small.mp4
+
