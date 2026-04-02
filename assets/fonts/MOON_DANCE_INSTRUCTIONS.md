@@ -10,9 +10,9 @@ Bitte fügen Sie die folgenden Schriftart-Dateien zum `assets/fonts/` Ordner hin
 - `MoonDance-Regular.woff` (Fallback)
 - `MoonDance-Regular.ttf` (Fallback)
 
-## Download-Quellen
+## Quellen
 
-Die Schriftart kann von folgenden Quellen heruntergeladen werden:
+Die Schriftart ist über folgende Anbieter erhältlich:
 
 1. **GitHub (Google Fonts)**: https://github.com/googlefonts/moondance
 2. **MadFonts**: https://madfonts.com/moon-dance-font/

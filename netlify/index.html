@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Moon+Dance&display=swap" rel="stylesheet">
-  <!-- Parisienne: hochwertige, filigrane Schreibschrift für „Wir öffnen unsere Maison …“ -->
+  <!-- Parisienne: hochwertige, filigrane Schreibschrift für Countdown-Einleitung -->
   <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
   <!-- HeyFlow Widget Script -->
   <script src="https://assets.prd.heyflow.com/builder/widget/latest/webview.js"></script>
@@ -392,7 +392,8 @@
       color: #ffffff;
       text-align: center;
       text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5);
-      white-space: nowrap;
+      max-width: min(95vw, 38rem);
+      line-height: 1.25;
       letter-spacing: 0.02em;
     }
     /* Countdown zum Go-Live */
@@ -1012,7 +1013,7 @@
 
       <!-- Countdown-Block: Schreibschrift + Countdown -->
       <div class="hero-maison__countdown-block">
-        <p class="hero-maison__countdown-lead">Wir öffnen unsere Maison in …</p>
+        <p class="hero-maison__countdown-lead">Maison Ô öffnet in Kürze …</p>
         <div class="hero-maison__countdown" data-countdown>
         <div class="hero-maison__countdown-item">
           <span class="hero-maison__countdown-value" data-countdown-days>00</span>
