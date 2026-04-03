@@ -387,16 +387,21 @@
     }
     .hero-maison__countdown-lead {
       font-family: 'Parisienne', cursive;
-      font-size: 2.5rem;
+      font-size: 3rem;
       font-weight: 400;
-      color: #ffffff;
+      color: #fffef8;
       text-align: center;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5);
-      max-width: min(95vw, 38rem);
-      line-height: 1.25;
-      letter-spacing: 0.02em;
+      max-width: min(95vw, 40rem);
+      line-height: 1.2;
+      letter-spacing: 0.04em;
+      text-shadow:
+        0 0 1px rgba(255, 255, 255, 0.9),
+        0 2px 4px rgba(0, 0, 0, 0.9),
+        0 4px 24px rgba(0, 0, 0, 0.65),
+        0 0 40px rgba(255, 248, 220, 0.35);
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
     }
-    /* Countdown zum Go-Live */
+    /* Countdown */
     .hero-maison__countdown {
       font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       color: #ffffff;
@@ -686,7 +691,7 @@
         margin-top: -130px;
       }
       .hero-maison__countdown-lead {
-        font-size: 1.9rem;
+        font-size: 2.2rem;
       }
       .hero-maison__countdown {
         padding: 8px 16px;
@@ -793,7 +798,7 @@
         margin-top: -120px;
       }
       .hero-maison__countdown-lead {
-        font-size: 1.6rem;
+        font-size: 1.85rem;
         white-space: normal;
         max-width: 90%;
       }
@@ -915,7 +920,7 @@
         margin-top: -110px;
       }
       .hero-maison__countdown-lead {
-        font-size: 1.4rem;
+        font-size: 1.65rem;
         white-space: normal;
         max-width: 92%;
       }
@@ -1641,12 +1646,11 @@
       });
     })();
 
-    // Countdown zum Go-Live
+    // Countdown
     (function() {
       const countdownElement = document.querySelector('[data-countdown]');
       if (!countdownElement) return;
 
-      // Ziel-Datum: 1. April 2026, 14:00 Uhr (Go-Live)
       const targetDate = new Date('2026-04-01T14:00:00').getTime();
 
       function updateCountdown() {
@@ -1654,8 +1658,14 @@
         const distance = targetDate - now;
 
         if (distance < 0) {
-          // Countdown abgelaufen
-          countdownElement.innerHTML = '<div class="hero-maison__countdown-item"><span class="hero-maison__countdown-value">Go-Live!</span></div>';
+          const daysElement = countdownElement.querySelector('[data-countdown-days]');
+          const hoursElement = countdownElement.querySelector('[data-countdown-hours]');
+          const minutesElement = countdownElement.querySelector('[data-countdown-minutes]');
+          const secondsElement = countdownElement.querySelector('[data-countdown-seconds]');
+          if (daysElement) daysElement.textContent = '00';
+          if (hoursElement) hoursElement.textContent = '00';
+          if (minutesElement) minutesElement.textContent = '00';
+          if (secondsElement) secondsElement.textContent = '00';
           return;
         }
 
