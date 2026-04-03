@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Moon+Dance&display=swap" rel="stylesheet">
-  <!-- Parisienne: hochwertige, filigrane Schreibschrift für Countdown-Einleitung -->
+  <!-- Parisienne: Schreibschrift für Tagline -->
   <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
   <!-- HeyFlow Widget Script -->
   <script src="https://assets.prd.heyflow.com/builder/widget/latest/webview.js"></script>
@@ -372,8 +372,8 @@
       }
     }
 
-    /* Countdown-Block (Text + Countdown) */
-    .hero-maison__countdown-block {
+    /* Tagline (Schreibschrift) */
+    .hero-maison__tagline-block {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -383,9 +383,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.5rem;
     }
-    .hero-maison__countdown-lead {
+    .hero-maison__tagline {
       font-family: 'Parisienne', cursive;
       font-size: 3rem;
       font-weight: 400;
@@ -400,68 +399,6 @@
         0 4px 24px rgba(0, 0, 0, 0.65),
         0 0 40px rgba(255, 248, 220, 0.35);
       filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
-    }
-    /* Countdown */
-    .hero-maison__countdown {
-      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 8px 16px;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5);
-      visibility: visible;
-      opacity: 1;
-    }
-
-    .hero-maison__countdown-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.2rem;
-    }
-
-    .hero-maison__countdown-value {
-      font-size: 1.8rem;
-      font-weight: 600;
-      line-height: 1;
-      letter-spacing: 0.05em;
-      transition: font-size 0.3s ease, transform 0.3s ease;
-    }
-
-    .hero-maison__countdown-item:hover .hero-maison__countdown-value {
-      font-size: 3.6rem;
-      transform: scale(1.1);
-    }
-
-    .hero-maison__countdown-label {
-      font-size: 0.8rem;
-      font-weight: 400;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      opacity: 0.9;
-      transition: opacity 0.3s ease;
-    }
-
-    .hero-maison__countdown-item:hover .hero-maison__countdown-label {
-      opacity: 1;
-    }
-
-    .hero-maison__countdown-separator {
-      font-size: 1.5rem;
-      font-weight: 300;
-      opacity: 0.7;
-      padding: 0 0.3rem;
-      transition: opacity 0.3s ease;
-    }
-
-    .hero-maison__countdown-item {
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .hero-maison__countdown-item:hover {
-      transform: translateY(-2px);
     }
 
     /* Bottom Right Icon - Concierge */
@@ -687,31 +624,11 @@
         text-decoration-thickness: 2px;
       }
 
-      .hero-maison__countdown-block {
+      .hero-maison__tagline-block {
         margin-top: -130px;
       }
-      .hero-maison__countdown-lead {
+      .hero-maison__tagline {
         font-size: 2.2rem;
-      }
-      .hero-maison__countdown {
-        padding: 8px 16px;
-        gap: 0.35rem;
-      }
-
-      .hero-maison__countdown-value {
-        font-size: 1.5rem;
-      }
-
-      .hero-maison__countdown-item:hover .hero-maison__countdown-value {
-        font-size: 3rem;
-      }
-
-      .hero-maison__countdown-label {
-        font-size: 0.7rem;
-      }
-
-      .hero-maison__countdown-separator {
-        font-size: 1.2rem;
       }
 
       .hero-maison__concierge-wrap {
@@ -794,34 +711,13 @@
         text-decoration-thickness: 2px;
       }
 
-      .hero-maison__countdown-block {
+      .hero-maison__tagline-block {
         margin-top: -120px;
       }
-      .hero-maison__countdown-lead {
+      .hero-maison__tagline {
         font-size: 1.85rem;
         white-space: normal;
         max-width: 90%;
-      }
-      .hero-maison__countdown {
-        padding: 6px 12px;
-        gap: 0.25rem;
-        z-index: 3;
-      }
-
-      .hero-maison__countdown-value {
-        font-size: 1.4rem;
-      }
-
-      .hero-maison__countdown-item:hover .hero-maison__countdown-value {
-        font-size: 2.8rem;
-      }
-
-      .hero-maison__countdown-label {
-        font-size: 0.65rem;
-      }
-
-      .hero-maison__countdown-separator {
-        font-size: 1.1rem;
       }
 
       .hero-maison__concierge-wrap {
@@ -916,34 +812,13 @@
         text-decoration-thickness: 2px;
       }
 
-      .hero-maison__countdown-block {
+      .hero-maison__tagline-block {
         margin-top: -110px;
       }
-      .hero-maison__countdown-lead {
+      .hero-maison__tagline {
         font-size: 1.65rem;
         white-space: normal;
         max-width: 92%;
-      }
-      .hero-maison__countdown {
-        padding: 5px 10px;
-        gap: 0.2rem;
-        z-index: 3;
-      }
-
-      .hero-maison__countdown-value {
-        font-size: 1.2rem;
-      }
-
-      .hero-maison__countdown-item:hover .hero-maison__countdown-value {
-        font-size: 2.4rem;
-      }
-
-      .hero-maison__countdown-label {
-        font-size: 0.6rem;
-      }
-
-      .hero-maison__countdown-separator {
-        font-size: 1rem;
       }
 
       .hero-maison__concierge-wrap {
@@ -1016,30 +891,9 @@
         Sichern Sie sich Ihren exklusiven Zugang
       </button>
 
-      <!-- Countdown-Block: Schreibschrift + Countdown -->
-      <div class="hero-maison__countdown-block">
-        <p class="hero-maison__countdown-lead">Maison Ô öffnet in Kürze …</p>
-        <div class="hero-maison__countdown" data-countdown>
-        <div class="hero-maison__countdown-item">
-          <span class="hero-maison__countdown-value" data-countdown-days>00</span>
-          <span class="hero-maison__countdown-label">Tage</span>
-        </div>
-        <div class="hero-maison__countdown-separator">:</div>
-        <div class="hero-maison__countdown-item">
-          <span class="hero-maison__countdown-value" data-countdown-hours>00</span>
-          <span class="hero-maison__countdown-label">Stunden</span>
-        </div>
-        <div class="hero-maison__countdown-separator">:</div>
-        <div class="hero-maison__countdown-item">
-          <span class="hero-maison__countdown-value" data-countdown-minutes>00</span>
-          <span class="hero-maison__countdown-label">Minuten</span>
-        </div>
-        <div class="hero-maison__countdown-separator">:</div>
-        <div class="hero-maison__countdown-item">
-          <span class="hero-maison__countdown-value" data-countdown-seconds>00</span>
-          <span class="hero-maison__countdown-label">Sekunden</span>
-        </div>
-      </div>
+      <!-- Tagline -->
+      <div class="hero-maison__tagline-block">
+        <p class="hero-maison__tagline">Maison Ô öffnet in Kürze …</p>
       </div>
 
       <!-- HeyFlow Modal -->
@@ -1644,52 +1498,6 @@
           footerMenu.classList.add('is-open');
         }
       });
-    })();
-
-    // Countdown
-    (function() {
-      const countdownElement = document.querySelector('[data-countdown]');
-      if (!countdownElement) return;
-
-      const targetDate = new Date('2026-04-01T14:00:00').getTime();
-
-      function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
-
-        if (distance < 0) {
-          const daysElement = countdownElement.querySelector('[data-countdown-days]');
-          const hoursElement = countdownElement.querySelector('[data-countdown-hours]');
-          const minutesElement = countdownElement.querySelector('[data-countdown-minutes]');
-          const secondsElement = countdownElement.querySelector('[data-countdown-seconds]');
-          if (daysElement) daysElement.textContent = '00';
-          if (hoursElement) hoursElement.textContent = '00';
-          if (minutesElement) minutesElement.textContent = '00';
-          if (secondsElement) secondsElement.textContent = '00';
-          return;
-        }
-
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        const daysElement = countdownElement.querySelector('[data-countdown-days]');
-        const hoursElement = countdownElement.querySelector('[data-countdown-hours]');
-        const minutesElement = countdownElement.querySelector('[data-countdown-minutes]');
-        const secondsElement = countdownElement.querySelector('[data-countdown-seconds]');
-
-        if (daysElement) daysElement.textContent = String(days).padStart(2, '0');
-        if (hoursElement) hoursElement.textContent = String(hours).padStart(2, '0');
-        if (minutesElement) minutesElement.textContent = String(minutes).padStart(2, '0');
-        if (secondsElement) secondsElement.textContent = String(seconds).padStart(2, '0');
-      }
-
-      // Sofort aktualisieren
-      updateCountdown();
-
-      // Dann jede Sekunde aktualisieren
-      setInterval(updateCountdown, 1000);
     })();
 
     // HeyFlow Modal - Warte bis DOM geladen ist
